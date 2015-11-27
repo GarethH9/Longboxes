@@ -1,0 +1,31 @@
+{{extend 'longboxes-layout.html'}}
+
+<!-- Search results -->
+<div class="container-fluid background">
+	<div class="row text-center">
+		<h2>Box view</h2>
+	</div>
+		
+	<hr>
+
+ 	<div class="row text-center">
+	
+	{{for comic in comics:}}
+	
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 100px;"></img>
+					{{=H4(comic.comics.title)}}
+					<p>Issue Number: {{=comic.comics.issue_number}}</p>
+					<p>Owner: {{=comic.comics.user_id}}</p>
+					<a class="btn btn-default" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
+				</div>
+			</div>
+		</div>
+		
+	{{pass}}
+	
+	</div>
+	
+</div>

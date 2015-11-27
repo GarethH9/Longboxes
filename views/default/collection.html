@@ -1,0 +1,67 @@
+{{extend 'longboxes-layout.html'}}
+
+<!-- Collection header section -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Your collection</h2>
+			<p>Hey, you're viewing an overview of ??'s collection.</p>
+		</div>
+	</div>
+</div>
+
+<!-- User's boxes - they can click on each for a full breakdown -->
+<div class="container-fluid">
+
+	{{box_count = 0}}
+	{{boxes_per_row = 5}}
+
+	{{for box in boxes:}}
+		
+		{{box_count = box_count + 1}}
+		
+		{{if box_count == 1:}}
+			<div class="row text-center">
+			<div class="col-sm-1"></div>
+		{{pass}}
+			
+		<div class="col-sm-2">
+			<div class="panel panel-default box">
+				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
+				<div class="panel-body">
+					<h3>{{=box.number_of_comics}}</h3>
+					<p>{{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+				</div>
+			</div>
+		</div>
+		
+		{{if box_count == boxes_per_row:}}
+			<div class="col-sm-1"></div>
+			</div>
+			{{box_count = 0}}
+		{{pass}}
+		
+	{{pass}}
+	
+	<!-- Add the 'new box' section -->
+	
+	{{if box_count == 0:}}
+		<div class="row text-center">
+			<div class="col-sm-1"></div>
+			
+	{{pass}}
+	
+	<div class="col-sm-2">
+		<div class="panel panel-default box">
+			<div class="panel-heading"></div>
+			<div class="panel-body">
+				<h3>Add a box!</h3>
+			</div>
+		</div>
+	</div>
+	
+	</div>
+	</div>
+	
+</div>

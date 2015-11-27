@@ -1,0 +1,31 @@
+{{extend 'longboxes-layout.html'}}
+
+<!-- Search results -->
+<div class="container">
+		
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Comic Information</h2>
+		</div>
+	</div>	
+		
+	<div class="row">
+		<div class="col-md-3 text-center">
+			<img src="{{=URL('download',args=comic.cover)}}" style="max-height: 400px;"></img>
+		</div>
+		
+		<div class="col-md-9">
+			{{=H2(comic.title)}}
+		
+			<p>Issue Number: {{=comic.issue_number}}</p>
+			<p>Writer(s): {{=comic.writers}}</p>
+			<p>Artist(s): {{=comic.artists}}</p>
+			<p>Publisher: {{=comic.publisher}}</p>
+			<p>Owner: {{=comic.user_id}}</p>
+			<p>Description:</p>
+			<p>{{=comic.description}}</p>
+		
+		</div>
+	</div>
+	
+</div>

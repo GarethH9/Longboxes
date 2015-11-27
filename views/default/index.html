@@ -1,0 +1,69 @@
+{{extend 'longboxes-layout.html'}}
+
+<header class="container-fluid background">
+    <div class="jumbotron text-center">
+
+		<h1>Longboxes</h1>
+		<p>It's a good time to be a comic collector!</p>
+		{{=form}}
+		{{pass}}	
+    </div>
+</header>
+
+<!-- 5 largest public collections -->
+<div class="container-fluid">
+	<div class="row text-center">
+		<h3>5 largest public collections</h3>
+
+		<div class="col-sm-1">	
+		</div>
+		
+		{{for box in largest_boxes:}}
+		
+		<div class="col-sm-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
+				<div class="panel-body">
+					<h3>{{=box.number_of_comics}}</h3>
+					<p>{{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+				</div>
+			</div>
+		</div>
+		
+		{{pass}}
+		
+		
+		<div class="col-sm-1">
+		</div>
+	</div>
+</div>
+
+<!-- 5 newest public collections -->
+<div class="container-fluid">
+	<div class="row text-center">
+		<h3>5 newest public collections</h3>
+
+		<div class="col-sm-1">	
+		</div>
+		
+		{{for box in newest_boxes:}}
+		
+		<div class="col-sm-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
+				<div class="panel-body">
+					<h3>{{=box.number_of_comics}}</h3>
+					<p>{{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+				</div>
+			</div>
+		</div>
+		
+		{{pass}}
+		
+		
+		<div class="col-sm-1">
+		</div>
+	</div>
+</div>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+	
+		<!--  Mobile Viewport Fix
+          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+          device-width: Occupy full width of the screen in its current orientation
+          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+          user-scalable = yes allows the user to zoom in -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+		<title>Longboxes</title>
+	
+		<!-- include stylesheets -->
+		<link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+		<link rel="stylesheet" href="{{=URL('static','css/longboxes.css')}}"/>
+		<link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+		<link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+	
+		{{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+
+	</head>
+	
+	<body>
+		<!-- Navbar ======================================= -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/Longboxes">Longboxes</a>
+					
+				</div>
+		
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="{{=URL('index')}}">Home</a></li>
+						<li><a href="{{=URL('search')}}">Search</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						{{if auth.is_logged_in():}}
+							<li><a href="{{=URL('collection')}}">My Collection</a></li>
+						{{pass}}
+						{{='auth' in globals() and auth.navbar('Welcome',mode='dropdown',referrer_actions=['register', 'profile']) or ''}}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Main ========================================= -->
+   
+		{{include}}
+ 
+		<footer class="footer">
+			<div class="container-fluid">
+				<hr>
+				{{=T('Copyright')}} &#169; {{=request.now.year}}
+			</div>
+		</footer>
+
+		<!-- The javascript =============================== -->
+		<script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+		<script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
+    </body>
+</html>
