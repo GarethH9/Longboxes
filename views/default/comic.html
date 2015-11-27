@@ -4,27 +4,89 @@
 <div class="container">
 		
 	<div class="row">
-		<div class="col-md-12">
-			<h2>Comic Information</h2>
+		<div class="col-md-10">
+			<h2>{{=comic.comics.title}} <small>{{=comic.auth_user.username}}</small></h2>
+			<p>You're viewing {{=comic.comics.title}}, which is owned by {{=comic.auth_user.username}}</p>
 		</div>
-	</div>	
+		<div class="col-md-2">
+			{{if own_comic == True:}}
+				<a class="btn btn-primary btn-top-right" href="{{=URL('update_comic',vars={'comic':comic.comics.id})}}">Edit comic</a>
+			{{else:}}
+				<a class="btn btn-primary btn-top-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to my collection!</a>
+			{{pass}}
+		</div>
+	</div>
+	
+	<p>&nbsp;</p>
 		
 	<div class="row">
-		<div class="col-md-3 text-center">
-			<img src="{{=URL('download',args=comic.cover)}}" style="max-height: 400px;"></img>
+		<div class="col-md-4 text-center">
+			<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 400px;"></img>
 		</div>
 		
-		<div class="col-md-9">
-			{{=H2(comic.title)}}
+		<div class="col-md-8">
 		
-			<p>Issue Number: {{=comic.issue_number}}</p>
-			<p>Writer(s): {{=comic.writers}}</p>
-			<p>Artist(s): {{=comic.artists}}</p>
-			<p>Publisher: {{=comic.publisher}}</p>
-			<p>Owner: {{=comic.user_id}}</p>
-			<p>Description:</p>
-			<p>{{=comic.description}}</p>
+			<strong>Issue Number:</strong>
+			<p>{{=comic.comics.issue_number}}</p>
+			
+			<strong>Writer(s):</strong>
+			<p>{{=comic.comics.writers}}</p>
+			
+			<strong>Artist(s):</strong>
+			<p>{{=comic.comics.artists}}</p>
+			
+			<strong>Publisher:</strong>
+			<p>{{=comic.comics.publisher}}</p>
+			
+			<strong>Owner:</strong>
+			<p>{{=comic.auth_user.username}}</p>
+			
+			<strong>Description:</strong>
+			<p>{{=comic.comics.description}}</p>
 		
+		</div>
+	</div>
+	
+<hr>
+	
+	<div class="row">
+		<div class="col-md-10">
+			<h4>Boxes</h4>
+			<p>Boxes containing this comic:</h3>
+		</div>
+		<div class="col-md-2">
+			{{if own_comic == True:}}
+				<a class="btn btn-primary btn-top-right" href="{{=URL('update_comic',vars={'comic':comic.comics.id})}}">Manage boxes</a>
+			{{pass}}
+		</div>
+	</div>
+	
+	<div class="row text-center">
+		{{for box in boxes:}}
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading panel-condensed">{{=H5(box.boxes.name)}}</div>
+					<div class="panel-body">
+						<p>Owner: <a href="{{=URL('collection',vars={'user':box.boxes.user_id})}}">{{=box.auth_user.username}}</a></p>
+						
+						<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+						{{if own_comic == True:}}
+							<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">Remove from box</a>
+						{{pass}}
+					</div>
+				</div>
+			</div>
+		{{pass}}
+	</div>
+	
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<p>Actions:</h3>
+			<a class="btn btn-default">Manage boxes</a>
+			<a class="btn btn-default">Add to my collection</a>
+			<a class="btn btn-default">Edit comic</a>
 		</div>
 	</div>
 	

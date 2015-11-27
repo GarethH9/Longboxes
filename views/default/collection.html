@@ -4,17 +4,22 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>Your collection</h2>
-			<p>Hey, you're viewing an overview of ??'s collection.</p>
+			<h2>{{=title}}</h2>
+			<p>Hey, you're viewing an overview of {{=name_text}} collection.</p>
 		</div>
 	</div>
 </div>
 
 <!-- User's boxes - they can click on each for a full breakdown -->
-<div class="container-fluid">
+<div class="container">
+
+	<hr>
+
+	<h3>Boxes</h3>
 
 	{{box_count = 0}}
-	{{boxes_per_row = 5}}
+	{{boxes_per_row = 4}}
+	{{box_width = 12/boxes_per_row}}
 
 	{{for box in boxes:}}
 		
@@ -22,46 +27,80 @@
 		
 		{{if box_count == 1:}}
 			<div class="row text-center">
-			<div class="col-sm-1"></div>
 		{{pass}}
 			
-		<div class="col-sm-2">
+		<div class="col-sm-{{=box_width}}">
 			<div class="panel panel-default box">
 				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
 				<div class="panel-body">
-					<h3>{{=box.number_of_comics}}</h3>
-					<p>{{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<h3>{{=box.number_of_comics}}
+						{{if box.number_of_comics == 1:}}
+							comic
+						{{else:}}
+							comics
+						{{pass}}
+					</h3>
+					<p>Created: {{=box.boxes.created_date.strftime("%H:%I")}} {{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
 					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+					<a class="btn btn-default" href="{{=URL('update_box',vars={'box':box.boxes.id})}}">Edit box</a>
 				</div>
 			</div>
 		</div>
 		
 		{{if box_count == boxes_per_row:}}
-			<div class="col-sm-1"></div>
 			</div>
 			{{box_count = 0}}
 		{{pass}}
 		
 	{{pass}}
 	
-	<!-- Add the 'new box' section -->
-	
-	{{if box_count == 0:}}
-		<div class="row text-center">
-			<div class="col-sm-1"></div>
+	<!-- Add the 'new box' section if this is the current user's collection -->
+	{{if own_collection == True:}}
+		{{if box_count == 0:}}
+			<div class="row text-center">
 			
-	{{pass}}
+		{{pass}}
 	
-	<div class="col-sm-2">
-		<div class="panel panel-default box">
-			<div class="panel-heading"></div>
-			<div class="panel-body">
-				<h3>Add a box!</h3>
+		<div class="col-sm-{{=box_width}}">
+			<div class="panel panel-default box">
+				<div class="panel-body">
+					<h3><a href="{{=URL('update_box')}}">Add a box!</a></h3>
+					<h3><a href="{{=URL('update_box')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h3>
+					<p>Click the '+' to add a new box to your collection!</p>
+				</div>
 			</div>
 		</div>
+		</div>
+		
+	{{pass}}
 	</div>
 	
-	</div>
-	</div>
+</div>
+
+<div class="container">
+
+	<hr>
 	
+	<h3>Comics</h3>
+	
+	<div class="row text-center">
+	
+		{{for comic in comics:}}
+		
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 100px;"></img>
+						{{=H4(comic.comics.title)}}
+						<p>Issue Number: {{=comic.comics.issue_number}}</p>
+						<p>Owner: {{=comic.comics.user_id}}</p>
+						<a class="btn btn-default" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
+					</div>
+				</div>
+			</div>
+			
+		{{pass}}
+		
+	</div>
+
 </div>

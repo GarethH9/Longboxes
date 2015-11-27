@@ -24,8 +24,15 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
 				<div class="panel-body">
-					<h3>{{=box.number_of_comics}}</h3>
-					<p>{{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<h3>{{=box.number_of_comics}}
+						{{if box.number_of_comics == 1:}}
+							comic
+						{{else:}}
+							comics
+						{{pass}}
+					</h3>
+					<p>Created: {{=box.boxes.created_date.strftime("%H:%I")}} {{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<p>Owner: <a href="{{=URL('collection',vars={'user':box.boxes.user_id})}}">{{=box.auth_user.username}}</a></p>
 					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
 				</div>
 			</div>
@@ -53,8 +60,15 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
 				<div class="panel-body">
-					<h3>{{=box.number_of_comics}}</h3>
-					<p>{{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<h3>{{=box.number_of_comics}}
+						{{if box.number_of_comics == 1:}}
+							comic
+						{{else:}}
+							comics
+						{{pass}}
+					</h3>
+					<p>Created: {{=box.boxes.created_date.strftime("%H:%I")}} {{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+					<p>Owner: <a href="{{=URL('collection',vars={'user':box.boxes.user_id})}}">{{=box.auth_user.username}}</a></p>
 					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
 				</div>
 			</div>

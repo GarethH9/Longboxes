@@ -19,7 +19,7 @@ service = Service()
 plugins = PluginManager()
 
 ## Add a setting to redirect to profile on login
-auth.settings.login_next = URL('user/profile')
+auth.settings.login_next = URL('collection')
 
 ## Add a setting to disable unwanted auth features
 auth.settings.actions_disabled = ['retrieve_username', 'request_reset_password']

@@ -43,6 +43,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						{{if auth.is_logged_in():}}
+							<li><a href="{{=URL('update_comic')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a comic!</a></li>
 							<li><a href="{{=URL('collection')}}">My Collection</a></li>
 						{{pass}}
 						{{='auth' in globals() and auth.navbar('Welcome',mode='dropdown',referrer_actions=['register', 'profile']) or ''}}
