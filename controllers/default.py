@@ -16,7 +16,10 @@
 # For better feedback on user actions a 'you're not allowed to see this' page should be used instead
 
 # Search form used throughout the application
-search_form = FORM('Search for a comic: ',INPUT(_name='search', requires=IS_NOT_EMPTY()) ,INPUT(_type='submit', _value='Search'), _action=URL('search'))
+search_form = FORM('Search for a comic: ', INPUT(_name='search', requires=IS_NOT_EMPTY()) ,INPUT(_type='submit', _value='Search'), _action=URL('search'), _class='form-inline')
+input_controls = search_form.elements(_type='text')
+for input_control in input_controls:
+    input_control['_class'] = 'form-control search-input'
 
 # Get the unfilled box ID of the user if they are logged in
 if auth.user_id:
@@ -64,8 +67,6 @@ def search():
             response.flash = 'form accepted'
         elif search_form.errors:
             response.flash = 'form has errors'
-        else:
-            response.flash = 'please fill out the form'
         
     # If we are not searching then return no results
     else:

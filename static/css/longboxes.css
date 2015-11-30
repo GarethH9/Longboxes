@@ -28,3 +28,7 @@ body {
 .btn-padded {
 	margin-top: 5px;
 }
+
+.search-input {
+	margin-right: 5px;
+}

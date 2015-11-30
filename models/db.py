@@ -107,9 +107,9 @@ db.define_table('comics',
 			
 #boxes table
 db.define_table('boxes',
-				Field('user_id', db.auth_user),
-				Field('name', type='string'),
-				Field('created_date', type='datetime'),
+				Field('user_id', db.auth_user, requires=IS_NOT_EMPTY()),
+				Field('name', type='string', requires=IS_NOT_EMPTY()),
+				Field('created_date', type='datetime', requires=IS_NOT_EMPTY()),
 				Field('public', type='boolean'))
 			
 #box_contents table
