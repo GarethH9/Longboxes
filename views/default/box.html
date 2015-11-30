@@ -1,7 +1,9 @@
+<!-- We extend the standard longboxes-layout.html -->
 {{extend 'longboxes-layout.html'}}
 
-<!-- Search results -->
 <div class="container">
+
+	<!-- Page heading -->
 	<div class="row">
 		<div class="col-md-12">
 			<h2>{{=box.boxes.name}} <small>{{=box.auth_user.username}}</small></h2>
@@ -11,8 +13,15 @@
 		
 	<hr>
 
+	<!-- New row for the comics -->
  	<div class="row text-center">
+ 	
+ 	<!-- If there are no comics tell the user -->
+ 	{{if not comics:}}
+ 		<p>This box appears to be empty...</p>
+ 	{{pass}}
 	
+	<!-- Loop through each of the comics and display it on the page -->
 	{{for comic in comics:}}
 	
 		<div class="col-md-4">
@@ -21,7 +30,7 @@
 					<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 100px;"></img>
 					{{=H4(comic.comics.title)}}
 					<p>Issue Number: {{=comic.comics.issue_number}}</p>
-					<p>Owner: {{=comic.auth_user.username}}</p>
+					<p>Owner: <a href="{{=URL('collection',vars={'user':comic.comics.user_id})}}">{{=comic.auth_user.username}}</a></p>
 					<a class="btn btn-default" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
 				</div>
 			</div>

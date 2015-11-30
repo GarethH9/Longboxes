@@ -1,10 +1,12 @@
+<!-- We extend the standard longboxes-layout.html -->
 {{extend 'longboxes-layout.html'}}
 
+<!-- Page header -->
 <header class="container-fluid background">
     <div class="jumbotron text-center">
-
 		<h1>Longboxes</h1>
 		<p>It's a good time to be a comic collector!</p>
+		<!-- Include the search form here to make it easy to find and obvious to the user -->
 		{{=form}}
 		{{pass}}	
     </div>
@@ -15,15 +17,17 @@
 	<div class="row text-center">
 		<h3>5 largest public collections</h3>
 
-		<div class="col-sm-1">	
-		</div>
+		<!-- Spacer column, could be used for navigation arrows were this to me made into a carousel -->
+		<div class="col-sm-1"></div>
 		
+		<!-- Loop through the largest boxes and display each -->
 		{{for box in largest_boxes:}}
 		
 		<div class="col-sm-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
 				<div class="panel-body">
+					<!-- If we have one comic we display 'comics', otherwise we display 'comic' -->
 					<h3>{{=box.number_of_comics}}
 						{{if box.number_of_comics == 1:}}
 							comic
@@ -31,6 +35,7 @@
 							comics
 						{{pass}}
 					</h3>
+					<!-- Display correctly formatted creation date and time -->
 					<p>Created: {{=box.boxes.created_date.strftime("%H:%I")}} {{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
 					<p>Owner: <a href="{{=URL('collection',vars={'user':box.boxes.user_id})}}">{{=box.auth_user.username}}</a></p>
 					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
@@ -40,9 +45,8 @@
 		
 		{{pass}}
 		
-		
-		<div class="col-sm-1">
-		</div>
+		<!-- Spacer column -->
+		<div class="col-sm-1"></div>
 	</div>
 </div>
 
@@ -51,15 +55,17 @@
 	<div class="row text-center">
 		<h3>5 newest public collections</h3>
 
-		<div class="col-sm-1">	
-		</div>
+		<!-- Spacer column -->
+		<div class="col-sm-1"></div>
 		
+		<!-- Loop through the newest boxes and display each -->
 		{{for box in newest_boxes:}}
 		
 		<div class="col-sm-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
 				<div class="panel-body">
+					<!-- If we have one comic we display 'comics', otherwise we display 'comic' -->
 					<h3>{{=box.number_of_comics}}
 						{{if box.number_of_comics == 1:}}
 							comic
@@ -67,6 +73,7 @@
 							comics
 						{{pass}}
 					</h3>
+					<!-- Display correctly formatted creation date and time -->
 					<p>Created: {{=box.boxes.created_date.strftime("%H:%I")}} {{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
 					<p>Owner: <a href="{{=URL('collection',vars={'user':box.boxes.user_id})}}">{{=box.auth_user.username}}</a></p>
 					<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
@@ -76,8 +83,7 @@
 		
 		{{pass}}
 		
-		
-		<div class="col-sm-1">
-		</div>
+		<!-- Spacer column -->
+		<div class="col-sm-1"></div>
 	</div>
 </div>

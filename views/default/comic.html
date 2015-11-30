@@ -1,31 +1,62 @@
+<!-- We extend the standard longboxes-layout.html -->
 {{extend 'longboxes-layout.html'}}
 
-<!-- Search results -->
+<!-- Container to hold the comic -->
 <div class="container">
+
+	<!-- If we have saved a comic then we display a message -->
+	{{if saved:}}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-success alert-dismissible" role="alert">
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  					<strong>Comic saved!</strong> Your changes to this comic have been saved
+				</div>
+			</div>
+		</div>
+		
+	{{pass}}
 		
 	<div class="row">
 		<div class="col-md-10">
+			<!-- Display the comic name and the username of it's owner -->
 			<h2>{{=comic.comics.title}} <small>{{=comic.auth_user.username}}</small></h2>
+			<!-- A short description of what the user is viewing, makes it clearer -->
 			<p>You're viewing {{=comic.comics.title}}, which is owned by {{=comic.auth_user.username}}</p>
 		</div>
 		<div class="col-md-2">
+			<!-- If the current user owns this comic then we add an 'edit comic' button -->
 			{{if own_comic == True:}}
-				<a class="btn btn-primary btn-top-right" href="{{=URL('update_comic',vars={'comic':comic.comics.id})}}">Edit comic</a>
+				<!-- Use a 'pencil' icon as this is associated with edit -->
+				<div class="btn-top-right">
+					<a class="btn btn-default" href="{{=URL('update_comic',vars={'comic':comic.comics.id})}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit comic</a>
+					<a class="btn btn-danger" data-toggle="modal" data-target="#delete-comic-modal" data-comic-delete-url="{{=URL('delete_comic',vars={'comic':comic.comics.id})}}" data-comic-name="{{=comic.comics.title}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+				</div>
 			{{else:}}
-				<a class="btn btn-primary btn-top-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to my collection!</a>
+			<!-- Otherwise we add an 'add to my collection' button -->
+			<!-- If the user isn't logged in the controller will take care of making this button do the right thing -->
+				<!-- Use a primary button to prompt an action from the user -->
+				<a class="btn btn-primary btn-top-right" href="{{=URL('add_to_collection', vars={'comic':comic.comics.id})}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to my collection!</a>
 			{{pass}}
 		</div>
 	</div>
 	
-	<p>&nbsp;</p>
+	<!-- Need some space in here -->
 		
+	<!-- New row for the comic information -->
 	<div class="row">
+		<!-- Column for the image -->
 		<div class="col-md-4 text-center">
+			<!-- We hardcode the max-height of the image to deal with images of differing sizes -->
 			<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 400px;"></img>
 		</div>
 		
+		<!-- Column for the comic information -->
 		<div class="col-md-8">
 		
+			<!-- Display a title for each section with the information underneath -->
+			<!-- Done like this as the 'description' section requires the content to be under the title (because it might be long), so this keeps everything consistent -->
+			
 			<strong>Issue Number:</strong>
 			<p>{{=comic.comics.issue_number}}</p>
 			
@@ -47,21 +78,31 @@
 		</div>
 	</div>
 	
-<hr>
+</div>
+
+<!-- New container for box information -->
+<div class="container">
 	
+	<hr>
+	
+	<!-- We will now display all of the boxes that contain this comic - useful for giving some context to the comic and allowing users to find similar collections/boxes, or other items that might be of interest -->
 	<div class="row">
 		<div class="col-md-10">
 			<h4>Boxes</h4>
 			<p>Boxes containing this comic:</h3>
 		</div>
 		<div class="col-md-2">
+			<!-- If this is this user's comic then we will add a button for them to manage which boxes this comic is in -->
 			{{if own_comic == True:}}
-				<a class="btn btn-primary btn-top-right" href="{{=URL('update_comic',vars={'comic':comic.comics.id})}}">Manage boxes</a>
+				<!-- Use a 'box' icon as user's will learn to associate this with boxes through the website -->
+				<a class="btn btn-default btn-top-right" href="{{=URL('manage_boxes',vars={'comic':comic.comics.id})}}"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> Manage boxes</a>
 			{{pass}}
 		</div>
 	</div>
 	
 	<div class="row text-center">
+		<!-- Loop through each of the boxes and display it -->
+		<!-- Use the standard box formatting (i.e. a panel with header and body) -->
 		{{for box in boxes:}}
 			<div class="col-md-3">
 				<div class="panel panel-default">
@@ -70,8 +111,9 @@
 						<p>Owner: <a href="{{=URL('collection',vars={'user':box.boxes.user_id})}}">{{=box.auth_user.username}}</a></p>
 						
 						<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+						<!-- If this is the user's own comic then they can remove it from a box -->
 						{{if own_comic == True:}}
-							<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">Remove from box</a>
+							<a class="btn btn-warning" data-toggle="modal" data-target="#delete-from-box-modal" data-from-box-delete-url="{{=URL('remove_from_box',vars={'box':box.boxes.id,'comic':comic.comics.id})}}" data-comic-name="{{=comic.comics.title}}" data-box-name="{{=box.boxes.name}}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 						{{pass}}
 					</div>
 				</div>
@@ -79,15 +121,48 @@
 		{{pass}}
 	</div>
 	
-	<hr>
-	
-	<div class="row">
-		<div class="col-md-12">
-			<p>Actions:</h3>
-			<a class="btn btn-default">Manage boxes</a>
-			<a class="btn btn-default">Add to my collection</a>
-			<a class="btn btn-default">Edit comic</a>
-		</div>
-	</div>
-	
 </div>
+
+<!-- Only need to output the modals and JS if this is the user's own comic -->
+{{if own_comic:}}
+	
+	<!-- Modal for deleting a comic from a box -->
+	<div class="modal fade" id="delete-from-box-modal" tabindex="-1" role="dialog" aria-labelledby="delete_from_box_label">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="delete_box_label">Remove comic from a box</h4>
+		  </div>
+		  <div class="modal-body">
+			<p>Are you sure you want to remove the comic "<span id="delete-from-box-modal-comic-name"></span>" from the "<span id="delete-from-box-modal-box-name"></span>" box?</p>
+			<p><em>Note: If this is the only box this comic is in then it will automatically be moved to the 'unfiled' box.</em></p>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<a type="button" class="btn btn-warning" id="delete-from-box-modal-button">Remove from box</a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<script type="text/javascript">
+
+		//Javascript to populate the delete box modal with the correct link and text
+		$('#delete-from-box-modal').on('show.bs.modal', function(e) {
+
+			//Get the box delete url and box name from the clicked button's data attributes
+			var delete_url = $(e.relatedTarget).data('from-box-delete-url');
+			var comic_name = $(e.relatedTarget).data('comic-name');
+			var box_name = $(e.relatedTarget).data('box-name');
+
+			//Set the modal text to display the box and comic names
+			$('#delete-from-box-modal-comic-name').text(comic_name);
+			$('#delete-from-box-modal-box-name').text(box_name);
+		
+			//Set the modal 'delete' button to the correct link
+			$('#delete-from-box-modal-button').attr('href', delete_url);
+		});
+
+	</script>
+{{pass}}

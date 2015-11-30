@@ -12,6 +12,12 @@ db = DAL('sqlite://longboxes.db')
 ## (more options discussed in gluon/tools.py)
 #########################################################################
 
+# Function to create an unfiled box for a user when they sign up
+def create_unfiled_box(form):
+    user_id = form.vars.id
+    unfiled_id = db.boxes.insert(user_id = form.vars.id, name = 'Unfiled', created_date = request.now, public = False)
+    db(db.auth_user.id == user_id).update(unfiled_id = unfiled_id)
+
 from gluon.tools import Auth, Service, PluginManager
 
 auth = Auth(db)
@@ -24,10 +30,16 @@ auth.settings.login_next = URL('collection')
 ## Add a setting to disable unwanted auth features
 auth.settings.actions_disabled = ['retrieve_username', 'request_reset_password']
 
+## Add a setting which will add an 'Unfiled' box for the user when they sign up
+#auth.settings.register_onaccept.append(lambda form: db.boxes.insert(user_id = form.vars.id, name = 'Unfiled', created_date = request.now, public = False))
+auth.settings.register_onaccept = create_unfiled_box
+
+
 db.define_table(
     auth.settings.table_user_name,
     Field('first_name', length=128, default=''),
     Field('last_name', length=128, default=''),
+    Field('unfiled_id'),
     Field('username', length=128, default='', unique=True), # required
     Field('password', 'password', length=512,            # required
           readable=False, label='Password'),
@@ -36,7 +48,7 @@ db.define_table(
     Field('reset_password_key', length=512,              # required
           writable=False, readable=False, default=''),
     Field('registration_id', length=512,                 # required
-          writable=False, readable=False, default=''))
+          writable=False, readable=False, default='')),
 
 ## do not forget validators
 custom_auth_table = db[auth.settings.table_user_name] # get the custom_auth_table
@@ -84,19 +96,19 @@ auth.settings.reset_password_requires_verification = True
 
 #comics table
 db.define_table('comics',
-				Field('title', type='text'),
-				Field('cover', type='upload'),
-				Field('issue_number', type='integer'),
-				Field('writers', type='text'),
-				Field('artists', type='text'),
-				Field('publisher', type='text'),
-				Field('description', type='text'),
-                                Field('user_id', db.auth_user))
+				Field('title', type='text', requires=IS_NOT_EMPTY()),
+				Field('cover', type='upload', requires=IS_NOT_EMPTY()),
+				Field('issue_number', type='integer', requires=IS_NOT_EMPTY()),
+				Field('writers', type='text', requires=IS_NOT_EMPTY()),
+				Field('artists', type='text', requires=IS_NOT_EMPTY()),
+				Field('publisher', type='text', requires=IS_NOT_EMPTY()),
+				Field('description', type='text', requires=IS_NOT_EMPTY()),
+                                Field('user_id', db.auth_user, requires=IS_NOT_EMPTY()))
 			
 #boxes table
 db.define_table('boxes',
 				Field('user_id', db.auth_user),
-				Field('name', type='text'),
+				Field('name', type='string'),
 				Field('created_date', type='datetime'),
 				Field('public', type='boolean'))
 			
@@ -104,10 +116,3 @@ db.define_table('boxes',
 db.define_table('box_contents',
 				Field('box_id', db.boxes),
 				Field('comic_id', db.comics))
-
-#db.define_table('products', Field('name'), Field('price'), Field('format'), Field('description'), Field('publisher'))
-
-# @IAPT: For the features we are going to set up a foreign key.  Now, remember that a foreign key equates to a 1-many
-# relationship in our data model, so we will simply refer to the table that we want to match things to.  Web2Py will
-# then automatically set up the foreign key for us.  Pretty simple.
-#db.define_table('features', Field('product_id', db.products))

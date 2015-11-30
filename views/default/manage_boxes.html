@@ -1,0 +1,133 @@
+<!-- We extend the standard longboxes-layout.html -->
+{{extend 'longboxes-layout.html'}}
+
+<!-- Collection header section -->
+<div class="container">
+	<!-- If we have performed an update then we display a message to say so -->
+	{{if updated:}}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-success alert-dismissible" role="alert">
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  					<!-- The exact text to display is determined by the controller and then sent to the view -->
+  					<strong>You changes have been saved!</strong> {{=comic.comics.title}} has now been assigned to the selected boxes
+  					<p><a href="{{=URL('collection')}}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Return to your collection</a></p>
+				</div>
+			</div>
+		</div>
+	{{pass}}
+	
+	<!-- If we have just added this comic to the collection then we display a message to say so -->
+	{{if new_comic:}}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-success alert-dismissible" role="alert">
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  					<!-- The exact text to display is determined by the controller and then sent to the view -->
+  					<strong>Comic added to your collection!</strong> {{=comic.comics.title}} has now been added to your collection
+  					<p>This comic has been added to your 'unfiled' box, but you can move it now if you wish.
+  					<p><a href="{{=URL('collection')}}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Return to your collection</a></p>
+				</div>
+			</div>
+		</div>
+	{{pass}}
+	
+	<div class="row">
+		<div class="col-md-8">
+			<!-- Display the title as defined in the controller -->
+			<h2>Assign this comic to your boxes</h2>
+			<!-- We customise the text do display the name of the collection's owner and whether we are looking at public/private -->
+			<p>Select which of your boxes you'd like to place this comic in and then press the save button to save your changes.</p>
+			<p>If you don't select a box then the comic will be automatically added to the unfiled box.</p>
+		</div>
+		<div class="col-md-4 text-center">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<!-- We have to get the URL to the image and then output that as an img -->
+					<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 80px;"></img>
+					{{=H4(comic.comics.title)}}
+					<p>Issue Number: {{=comic.comics.issue_number}}</p>
+					<p>Owner: <a href="{{=URL('collection',vars={'user':comic.comics.user_id})}}">{{=comic.auth_user.username}}</a></p>
+					<a class="btn btn-default btn-padded" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+	<hr>
+	
+	<form id="box-form" action="" method="post" onsubmit="return validateForm()">
+	
+			<div class="row text-center">
+
+				<!-- Loop through the largest boxes and display each -->
+				{{for box in boxes:}}
+	
+				<div class="col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">{{=H4(box.boxes.name)}}</div>
+						<div class="panel-body">
+							<!-- Display correctly formatted creation date and time -->
+							<p>Include comic in box: <input type="checkbox" name="{{=box.boxes.id}}"
+							{{if box.box_contents.comic_id is not None:}}
+								checked
+							{{pass}}
+							></p>
+							<p>Created: {{=box.boxes.created_date.strftime("%H:%I")}} {{=box.boxes.created_date.strftime("%d/%m/%Y")}}</p>
+							<a class="btn btn-default" href="{{=URL('box',vars={'id':box.boxes.id})}}">View box</a>
+						</div>
+					</div>
+				</div>
+	
+				{{pass}}
+		
+			</div>
+	
+			<div class="row">
+				<div class="col-md-12">
+					<!-- Use the floppy disk icon because it's still what people associate with saving -->
+					<button class="btn btn-success pull-right" type="submit" id="save-button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>
+				</div>
+			</div>
+
+	</form>
+	
+</div>
+
+<script type="text/javascript">
+
+//Function to validate the form and ensure that at least one box is selected
+function validateForm()
+{
+	//Basis for this code taken from http://stackoverflow.com/questions/11787665/making-sure-at-least-one-checkbox-is-checked
+	
+	//Variable we use to store if a checkbox is checked
+	var checkboxChecked = false;
+	
+	//Loops through each of the checkboxes and makes sure one is checked
+	$('input[type="checkbox"]').each(function()
+	{
+    	if ($(this).is(":checked"))
+    	{
+        	checkboxChecked = true;
+    	}
+	});
+	
+	//If no checkboxes are checked then we add the comic to the unfiled box
+	if (checkboxChecked == false)
+	{
+		//Add a hidden input to tell the controller to add this to the unfiled box
+		$('<input />').attr('type','hidden').attr('id','unfiled').attr('name','unfiled').appendTo('#box-form');
+		return true;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+</script>
+

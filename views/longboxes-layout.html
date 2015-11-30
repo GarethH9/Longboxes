@@ -14,15 +14,21 @@
 		<!-- include stylesheets -->
 		<link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
 		<link rel="stylesheet" href="{{=URL('static','css/longboxes.css')}}"/>
+		
+		<!-- Favicon image is defined here - currently just using default web2py icon -->
 		<link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
 	
-		{{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+		<!-- Include the standard web2.py js,  css etc. -->
+		{{include 'web2py_ajax.html'}}
 
 	</head>
 	
 	<body>
-		<!-- Navbar ======================================= -->
+		<!-- Used for when we want to flash a response -->
+		<div class="flash alert alert-dismissable">{{=response.flash or ''}}</div>
+		
+		<!-- NAVBAR - Standard bootstrap navbar is used here -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -32,38 +38,82 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/Longboxes">Longboxes</a>
+					<!-- Set our brand and make it always navigate to the index -->
+					<a class="navbar-brand" href="{{=URL('index')}}">Longboxes</a>
 					
 				</div>
 		
+				<!-- This is the portion of the navbar that will 'collapse' away on small screens -->
 				<div class="collapse navbar-collapse">
+					<!-- Navbar left - links that appear here -->
 					<ul class="nav navbar-nav">
 						<li><a href="{{=URL('index')}}">Home</a></li>
 						<li><a href="{{=URL('search')}}">Search</a></li>
 					</ul>
+					<!-- Navbar right - links that appear here -->
 					<ul class="nav navbar-nav navbar-right">
+						<!-- If the user is logged in we add some quick links -->
 						{{if auth.is_logged_in():}}
 							<li><a href="{{=URL('update_comic')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a comic!</a></li>
 							<li><a href="{{=URL('collection')}}">My Collection</a></li>
 						{{pass}}
+						<!-- Add the standard web2py auth navbar elements -->
+						<!-- If we wanted to disable signup we can do so by altering the 'referrer_actions' -->
 						{{='auth' in globals() and auth.navbar('Welcome',mode='dropdown',referrer_actions=['register', 'profile']) or ''}}
 					</ul>
 				</div>
 			</div>
 		</nav>
-
-		<!-- Main ========================================= -->
    
+   		<!-- This is where we will include the individual pages that extend this file -->
 		{{include}}
  
+ 		<!-- FOOTER - Standard across all pages -->
 		<footer class="footer">
 			<div class="container-fluid">
 				<hr>
+				<!-- Add an up-to-date copyright notice -->
 				{{=T('Copyright')}} &#169; {{=request.now.year}}
 			</div>
 		</footer>
 
-		<!-- The javascript =============================== -->
+		<!-- Modal for deleting a comic -->
+		<div class="modal fade" id="delete-comic-modal" tabindex="-1" role="dialog" aria-labelledby="delete_comic_label">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="delete_box_label">Delete comic</h4>
+			  </div>
+			  <div class="modal-body">
+				<p>Are you sure you want to delete the comic "<span id="delete-comic-modal-comic-name"></span>"?</p>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<a type="button" class="btn btn-danger" id="delete-comic-modal-button">Delete comic</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Some JS we use on multiple pages -->
+		<script type="text/javascript">
+			//Javascript to populate the delete comic modal with the correct link and text
+			$('#delete-comic-modal').on('show.bs.modal', function(e) {
+		
+				//Get the comic delete url and box name from the clicked button's data attributes
+				var comic_url = $(e.relatedTarget).data('comic-delete-url');
+				var comic_name = $(e.relatedTarget).data('comic-name');
+
+				//Set the modal text to display the comic name
+				$('#delete-comic-modal-comic-name').text(comic_name);
+		
+				//Set the modal 'delete' button to the correct link
+				$('#delete-comic-modal-button').attr('href', comic_url);
+			});
+		</script>
+		
+		<!-- Add some additional js at the bottom -->
 		<script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
 		<script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
     </body>

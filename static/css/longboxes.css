@@ -1,12 +1,30 @@
+/* Add 60px of padding to the body to allow for the navbar */
 body {
 	padding-top: 60px;
 }
 
+/* When using a panel-condensed we remove whitespace around the h5 to tighten everything up */
 .panel-heading.panel-condensed h5{
 	margin: 0px;
 }
 
+/* For buttons that we want to float top right */
 .btn-top-right {
 	margin-top: 20px;
 	float: right;
+}
+
+/* Pulls an element or elements to the right */
+.pull-right {
+	float: right;
+}
+
+/* Add some margin so there is whitespace below the copyright notice */
+.footer {
+	margin-bottom: 15px;
+}
+
+/* Used to make sure buttons have some space above them when they collapse */
+.btn-padded {
+	margin-top: 5px;
 }

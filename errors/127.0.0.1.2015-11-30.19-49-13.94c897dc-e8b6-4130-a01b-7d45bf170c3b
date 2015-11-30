@@ -1,0 +1,828 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> name 'saved' is not defined"
+p3
+sS'layer'
+p4
+S'/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/views/default/collection.html'
+p5
+sS'code'
+p6
+S'response.write(\'<!-- We extend the standard longboxes-layout.html -->\\n\', escape=False)\nresponse.write(\'<!DOCTYPE html>\\n\\t<head>\\n\\t\\t<meta charset="utf-8">\\n\\t\\n\\t\\t<!--  Mobile Viewport Fix\\n          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag\\n          device-width: Occupy full width of the screen in its current orientation\\n          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height\\n          user-scalable = yes allows the user to zoom in -->\\n\\t\\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\\n\\t\\n\\t\\t<title>Longboxes</title>\\n\\t\\n\\t\\t<!-- include stylesheets -->\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'css/bootstrap.min.css\'))\nresponse.write(\'"/>\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'css/longboxes.css\'))\nresponse.write(\'"/>\\n\\t\\t\\n\\t\\t<!-- Favicon image is defined here - currently just using default web2py icon -->\\n\\t\\t<link rel="shortcut icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'images/favicon.ico\'))\nresponse.write(\'" type="image/x-icon">\\n\\t\\t<link rel="apple-touch-icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'images/favicon.png\'))\nresponse.write(\'">\\n\\t\\n\\t\\t<!-- Include the standard web2.py js,  css etc. -->\\n\\t\\t\', escape=False)\nresponse.write(\'<script type="text/javascript"><!--\\n    // These variables are used by the web2py_ajax_init function in web2py_ajax.js (which is loaded below).\\n    var w2p_ajax_confirm_message = "\', escape=False)\nresponse.write(T(\'Are you sure you want to delete this object?\'))\nresponse.write(\'";\\n    var w2p_ajax_disable_with_message = "\', escape=False)\nresponse.write(T(\'Working...\'))\nresponse.write(\'";\\n    var w2p_ajax_date_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d\'))\nresponse.write(\'";\\n    var w2p_ajax_datetime_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d %H:%M:%S\'))\nresponse.write(\'";\\n    var ajax_error_500 = \\\'\', escape=False)\nresponse.write(T.M(\'An error occured, please [[reload %s]] the page\') % URL(args=request.args, vars=request.get_vars))\nresponse.write("\'\\n    //--></script>\\n", escape=False)\nresponse.files.insert(0,URL(\'static\',\'js/jquery.js\'))\nresponse.files.insert(1,URL(\'static\',\'css/calendar.css\'))\nresponse.files.insert(2,URL(\'static\',\'js/calendar.js\'))\nresponse.files.insert(3,URL(\'static\',\'js/web2py.js\'))\nresponse.include_meta()\nresponse.include_files()\nresponse.write(\'\\n\', escape=False)\nresponse.write(\'\\n\\n\\t</head>\\n\\t\\n\\t<body>\\n\\t\\t<!-- Used for when we want to flash a response -->\\n\\t\\t<div class="flash alert alert-dismissable">\', escape=False)\nresponse.write(response.flash or \'\')\nresponse.write(\'</div>\\n\\t\\t\\n\\t\\t<!-- NAVBAR - Standard bootstrap navbar is used here -->\\n\\t\\t<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">\\n\\t\\t\\t<div class="container-fluid">\\n\\t\\t\\t\\t<div class="navbar-header">\\n\\t\\t\\t\\t\\t<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">\\n\\t\\t\\t\\t\\t\\t<span class="sr-only">Toggle navigation</span>\\n\\t\\t\\t\\t\\t\\t<span class="icon-bar"></span>\\n\\t\\t\\t\\t\\t\\t<span class="icon-bar"></span>\\n\\t\\t\\t\\t\\t\\t<span class="icon-bar"></span>\\n\\t\\t\\t\\t\\t</button>\\n\\t\\t\\t\\t\\t<!-- Set our brand and make it always navigate to the index -->\\n\\t\\t\\t\\t\\t<a class="navbar-brand" href="\', escape=False)\nresponse.write(URL(\'index\'))\nresponse.write(\'">Longboxes</a>\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t</div>\\n\\t\\t\\n\\t\\t\\t\\t<!-- This is the portion of the navbar that will \\\'collapse\\\' away on small screens -->\\n\\t\\t\\t\\t<div class="collapse navbar-collapse">\\n\\t\\t\\t\\t\\t<!-- Navbar left - links that appear here -->\\n\\t\\t\\t\\t\\t<ul class="nav navbar-nav">\\n\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'index\'))\nresponse.write(\'">Home</a></li>\\n\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'search\'))\nresponse.write(\'">Search</a></li>\\n\\t\\t\\t\\t\\t</ul>\\n\\t\\t\\t\\t\\t<!-- Navbar right - links that appear here -->\\n\\t\\t\\t\\t\\t<ul class="nav navbar-nav navbar-right">\\n\\t\\t\\t\\t\\t\\t<!-- If the user is logged in we add some quick links -->\\n\\t\\t\\t\\t\\t\\t\', escape=False)\nif auth.is_logged_in():\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(\'update_comic\'))\n    response.write(\'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a comic!</a></li>\\n\\t\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(\'collection\'))\n    response.write(\'">My Collection</a></li>\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n    pass\nresponse.write("\\n\\t\\t\\t\\t\\t\\t<!-- Add the standard web2py auth navbar elements -->\\n\\t\\t\\t\\t\\t\\t<!-- If we wanted to disable signup we can do so by altering the \'referrer_actions\' -->\\n\\t\\t\\t\\t\\t\\t", escape=False)\nresponse.write(\'auth\' in globals() and auth.navbar(\'Welcome\',mode=\'dropdown\',referrer_actions=[\'register\', \'profile\']) or \'\')\nresponse.write(\'\\n\\t\\t\\t\\t\\t</ul>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</nav>\\n   \\n   \\t\\t<!-- This is where we will include the individual pages that extend this file -->\\n\\t\\t\', escape=False)\nresponse.write(\'\\n\\n<!-- Collection header section -->\\n<div class="container">\\n\\t<div class="row">\\n\\t\\t<div class="col-md-12">\\n\\t\\t\\t<!-- Display the title as defined in the controller -->\\n\\t\\t\\t<h2>\', escape=False)\nresponse.write(title)\nresponse.write("</h2>\\n\\t\\t\\t<!-- We customise the text do display the name of the collection\'s owner and whether we are looking at public/private -->\\n\\t\\t\\t<p>Hey, you\'re viewing an overview of ", escape=False)\nresponse.write(name_text)\nresponse.write(\' collection.</p>\\n\\t\\t</div>\\n\\t</div>\\n\\t\\n\\t<!-- If we have deleted a comic or box then we display a message to confirm this -->\\n\\t\', escape=False)\nif deleted:\n    response.write(\'\\n\\t\\t<div class="row">\\n\\t\\t\\t<div class="col-md-12">\\n\\t\\t\\t\\t<div class="alert alert-success alert-dismissible" role="alert">\\n  \\t\\t\\t\\t\\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n  \\t\\t\\t\\t\\t<!-- The exact text to display is determined by the controller and then sent to the view -->\\n  \\t\\t\\t\\t\\t<strong>\', escape=False)\n    response.write(deleted.title())\n    response.write(\' deleted!</strong> \', escape=False)\n    response.write(deleted_text)\n    response.write(\'\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t\\n\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\n\\t<!-- If we have saved a box then we display a message -->\\n\\t\', escape=False)\nif saved:\n    response.write(\'\\n\\t\\t<div class="row">\\n\\t\\t\\t<div class="col-md-12">\\n\\t\\t\\t\\t<div class="alert alert-success alert-dismissible" role="alert">\\n  \\t\\t\\t\\t\\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n  \\t\\t\\t\\t\\t<strong>Box saved!</strong> Your changes to the box have been saved\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t\\n\\t\', escape=False)\n    pass\nresponse.write(\'\\n</div>\\n\\n<!-- User\\\'s boxes - they can click on each for a full breakdown -->\\n<div class="container">\\n\\n\\t<hr>\\n\\n\\t<h3>Boxes</h3>\\n\\t\\n\\t\\n\\t<!-- If this is the current user\\\'s collection then add a key so user\\\'s know what the buttons mean -->\\n\\t\', escape=False)\nif own_collection:\n    response.write(\'\\n\\t\\t<!-- This is not strictly necessary as the icons should make their meaning clear, but we put them here just in case -->\\n\\t\\t<p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> - Edit box details</p>\\n\\t\\t<p><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> - Delete box and move all comics to \\\'Unfiled\\\'</p>\\n\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\n\\t<!-- We can dynamically change the number of boxes to be displayed on each row by changing this variables -->\\n\\t\', escape=False)\nbox_count = 0\nresponse.write(\'\\n\\t\', escape=False)\nboxes_per_row = 4\nresponse.write(\'\\n\\t\', escape=False)\nbox_width = 12/boxes_per_row\nresponse.write(\'\\n\\n\\t<!-- Loop through each of the boxes and display it -->\\n\\t\', escape=False)\nfor box in boxes:\n    response.write(\'\\n\\t\\t\\n\\t\\t<!-- Count how many boxes we have displayed on this row -->\\n\\t\\t\', escape=False)\n    box_count = box_count + 1\n    response.write(\'\\n\\t\\t\\n\\t\\t<!-- If this is the first box on this row then we need the row start HTML -->\\n\\t\\t\', escape=False)\n    if box_count == 1:\n        response.write(\'\\n\\t\\t\\t<div class="row text-center">\\n\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\t\\t\\n\\t\\t<!-- Create a column for the box -->\\n\\t\\t<div class="col-sm-\', escape=False)\n    response.write(box_width)\n    response.write(\'">\\n\\t\\t\\t<div class="panel panel-default box">\\n\\t\\t\\t\\t<div class="panel-heading">\', escape=False)\n    response.write(H4(box.boxes.name))\n    response.write(\'</div>\\n\\t\\t\\t\\t<div class="panel-body">\\n\\t\\t\\t\\t\\t<!-- If we have one comic we display \\\'comics\\\', otherwise we display \\\'comic\\\' -->\\n\\t\\t\\t\\t\\t<h3>\', escape=False)\n    response.write(box.number_of_comics)\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n    if box.number_of_comics == 1:\n        response.write(\'\\n\\t\\t\\t\\t\\t\\t\\tcomic\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n    else:\n        response.write(\'\\n\\t\\t\\t\\t\\t\\t\\tcomics\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\t\\t\\t\\t</h3>\\n\\t\\t\\t\\t\\t<!-- Display correctly formatted creation date and time -->\\n\\t\\t\\t\\t\\t<p>Created: \', escape=False)\n    response.write(box.boxes.created_date.strftime("%H:%I"))\n    response.write(\' \', escape=False)\n    response.write(box.boxes.created_date.strftime("%d/%m/%Y"))\n    response.write(\'</p>\\n\\t\\t\\t\\t\\t<a class="btn btn-default btn-padded" href="\', escape=False)\n    response.write(URL(\'box\',vars={\'id\':box.boxes.id}))\n    response.write(\'">View box</a>\\n\\t\\t\\t\\t\\t<!-- Add some edit buttons if this is the user\\\'s own collection -->\\n\\t\\t\\t\\t\\t\', escape=False)\n    if own_collection:\n        response.write("\\n\\t\\t\\t\\t\\t\\t<!-- We\'re only going to display the edit buttons if we aren\'t outputting the unfiled box -->\\n\\t\\t\\t\\t\\t\\t", escape=False)\n        if box.boxes.name != \'Unfiled\':\n            response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t<!-- We use icons on these buttons to save space and prevent repeated information on every box -->\\n\\t\\t\\t\\t\\t\\t\\t<a class="btn btn-default btn-padded" href="\', escape=False)\n            response.write(URL(\'update_box\',vars={\'box\':box.boxes.id}))\n            response.write(\'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>\\n\\t\\t\\t\\t\\t\\t\\t<a class="btn btn-danger btn-padded" data-toggle="modal" data-target="#delete-box-modal" data-box-delete-url="\', escape=False)\n            response.write(URL(\'delete_box\',vars={\'box\':box.boxes.id}))\n            response.write(\'" data-box-name="\', escape=False)\n            response.write(box.boxes.name)\n            response.write(\'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n            pass\n        response.write(\'\\n\\t\\t\\t\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t\\n\\t\\t<!-- If we are on the last box for the row output the row end HTML and reset the counter -->\\n\\t\\t\', escape=False)\n    if box_count == boxes_per_row:\n        response.write(\'\\n\\t\\t\\t</div>\\n\\t\\t\\t\', escape=False)\n        box_count = 0\n        response.write(\'\\n\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\t\\n\\t\', escape=False)\n    pass\nresponse.write("\\n\\t\\n\\t<!--\\n\\tAdd the \'new box\' section if this is the current user\'s collection\\n\\tThis should look somewhat like a box to make it clear what it does\\n\\tIf the user has very few/no boxes in their collection this will be at the top of the page making it obvious how they create a new box\\n\\t-->\\n\\t", escape=False)\nif own_collection == True:\n    response.write(\'\\n\\t\\t<!-- If we need a new row then create it -->\\n\\t\\t\', escape=False)\n    if box_count == 0:\n        response.write(\'\\n\\t\\t\\t<div class="row text-center">\\n\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\n\\t\\t<!-- Create the column for the \\\'new box\\\' section -->\\n\\t\\t<div class="col-sm-\', escape=False)\n    response.write(box_width)\n    response.write(\'">\\n\\t\\t\\t<div class="panel panel-default box">\\n\\t\\t\\t\\t<div class="panel-heading"><h4>A future box...</h4></div>\\n\\t\\t\\t\\t<div class="panel-body">\\n\\t\\t\\t\\t\\t<h3><a href="\', escape=False)\n    response.write(URL(\'update_box\'))\n    response.write(\'">Add a box!</a></h3>\\n\\t\\t\\t\\t\\t<h3><a href="\', escape=False)\n    response.write(URL(\'update_box\'))\n    response.write(\'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h3>\\n\\t\\t\\t\\t\\t<p>Click the \\\'+\\\' to add a new box to your collection!</p>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t</div>\\n\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\n\\t</div>\\n\\t\\n</div>\\n\\n<!-- We also display all of the comics (public if viewing another user\\\'s collection) in this collection -->\\n<div class="container">\\n\\n\\t<hr>\\n\\t\\n\\t<h3>Comics</h3>\\n\\t\\n\\t<div class="row text-center">\\n\\t\\n\\t\\t\', escape=False)\nif not comics:\n    response.write(\'\\n\\t\\t\\t<p>This user has no public comics</p>\\n\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\n\\t\\t<!-- Loop through each of the comics and display it here -->\\n\\t\\t\', escape=False)\nfor comic in comics:\n    response.write(\'\\n\\t\\t\\n\\t\\t\\t<div class="col-sm-4">\\n\\t\\t\\t\\t<div class="panel panel-default">\\n\\t\\t\\t\\t\\t<div class="panel-body">\\n\\t\\t\\t\\t\\t\\t<!-- We have to get the URL to the image and then output that as an img -->\\n\\t\\t\\t\\t\\t\\t<img src="\', escape=False)\n    response.write(URL(\'download\',args=comic.comics.cover))\n    response.write(\'" style="max-height: 100px;"></img>\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n    response.write(H4(comic.comics.title))\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t<p>Issue Number: \', escape=False)\n    response.write(comic.comics.issue_number)\n    response.write(\'</p>\\n\\t\\t\\t\\t\\t\\t<p>Owner: <a href="\', escape=False)\n    response.write(URL(\'collection\',vars={\'user\':comic.comics.user_id}))\n    response.write(\'">\', escape=False)\n    response.write(comic.auth_user.username)\n    response.write(\'</a></p>\\n\\t\\t\\t\\t\\t\\t<a class="btn btn-default btn-padded" href="\', escape=False)\n    response.write(URL(\'comic\',vars={\'id\':comic.comics.id}))\n    response.write(\'">Full details</a>\\n\\t\\t\\t\\t\\t\\t<!-- Output some buttons if this is the user\\\'s own collection-->\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n    if own_collection:\n        response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t<a class="btn btn-default btn-padded" href="\', escape=False)\n        response.write(URL(\'manage_boxes\',vars={\'comic\':comic.comics.id}))\n        response.write(\'"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> Manage boxes</a>\\n\\t\\t\\t\\t\\t\\t\\t<a class="btn btn-danger btn-padded" data-toggle="modal" data-target="#delete-comic-modal" data-comic-delete-url="\', escape=False)\n        response.write(URL(\'delete_comic\',vars={\'comic\':comic.comics.id}))\n        response.write(\'" data-comic-name="\', escape=False)\n        response.write(comic.comics.title)\n        response.write(\'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\t\\n\\t\\t\', escape=False)\n    pass\nresponse.write("\\n\\t\\t\\n\\t\\t<!-- If we are viewing the user\'s own collection then give them an add comic panel -->\\n\\t\\t", escape=False)\nif own_collection:\n    response.write(\'\\n\\t\\t\\n\\t\\t\\t<div class="col-sm-4">\\n\\t\\t\\t\\t<div class="panel panel-default">\\n\\t\\t\\t\\t\\t<div class="panel-body">\\n\\t\\t\\t\\t\\t\\t<h3><a href="\', escape=False)\n    response.write(URL(\'update_comic\'))\n    response.write(\'">Add a comic!</a></h3>\\n\\t\\t\\t\\t\\t\\t<h3><a href="\', escape=False)\n    response.write(URL(\'update_comic\'))\n    response.write(\'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h3>\\n\\t\\t\\t\\t\\t\\t<p>Click the \\\'+\\\' to add a new comic to your collection!</p>\\n\\t\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t\\n\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\t\\n\\t</div>\\n\\n</div>\\n\\n\', escape=False)\nif own_collection:\n    response.write(\'\\n\\t<!-- Only need to output the modals and JS if this is the user\\\'s own collection -->\\n\\t<!-- Modal for deleting a box -->\\n\\t<div class="modal fade" id="delete-box-modal" tabindex="-1" role="dialog" aria-labelledby="delete_box_label">\\n\\t  <div class="modal-dialog" role="document">\\n\\t\\t<div class="modal-content">\\n\\t\\t  <div class="modal-header">\\n\\t\\t\\t<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n\\t\\t\\t<h4 class="modal-title" id="delete_box_label">Delete box</h4>\\n\\t\\t  </div>\\n\\t\\t  <div class="modal-body">\\n\\t\\t\\t<p>Are you sure you want to delete the box "<span id="delete-box-modal-box-name"></span>"?</p>\\n\\t\\t\\t<p><em>Note: The comics contained in this box will not be delete and will instead be moved into your \\\'unfiled\\\' box</em></p>\\n\\t\\t  </div>\\n\\t\\t  <div class="modal-footer">\\n\\t\\t\\t<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>\\n\\t\\t\\t<a type="button" class="btn btn-danger" id="delete-box-modal-button">Delete box</a>\\n\\t\\t  </div>\\n\\t\\t</div>\\n\\t  </div>\\n\\t</div>\\n\\n\\t<script type="text/javascript">\\n\\n\\t\\t//Javascript to populate the delete box modal with the correct link and text\\n\\t\\t$(\\\'#delete-box-modal\\\').on(\\\'show.bs.modal\\\', function(e) {\\n\\n\\t\\t\\t//Get the box delete url and box name from the clicked button\\\'s data attributes\\n\\t\\t\\tvar box_url = $(e.relatedTarget).data(\\\'box-delete-url\\\');\\n\\t\\t\\tvar box_name = $(e.relatedTarget).data(\\\'box-name\\\');\\n\\n\\t\\t\\t//Set the modal text to display the box name\\n\\t\\t\\t$(\\\'#delete-box-modal-box-name\\\').text(box_name);\\n\\t\\t\\n\\t\\t\\t//Set the modal \\\'delete\\\' button to the correct link\\n\\t\\t\\t$(\\\'#delete-box-modal-button\\\').attr(\\\'href\\\', box_url);\\n\\t\\t});\\n\\n\\t</script>\\n\', escape=False)\n    pass\nresponse.write(\'\\n \\n \\t\\t<!-- FOOTER - Standard across all pages -->\\n\\t\\t<footer class="footer">\\n\\t\\t\\t<div class="container-fluid">\\n\\t\\t\\t\\t<hr>\\n\\t\\t\\t\\t<!-- Add an up-to-date copyright notice -->\\n\\t\\t\\t\\t\', escape=False)\nresponse.write(T(\'Copyright\'))\nresponse.write(\' &#169; \', escape=False)\nresponse.write(request.now.year)\nresponse.write(\'\\n\\t\\t\\t</div>\\n\\t\\t</footer>\\n\\n\\t\\t<!-- Modal for deleting a comic -->\\n\\t\\t<div class="modal fade" id="delete-comic-modal" tabindex="-1" role="dialog" aria-labelledby="delete_comic_label">\\n\\t\\t  <div class="modal-dialog" role="document">\\n\\t\\t\\t<div class="modal-content">\\n\\t\\t\\t  <div class="modal-header">\\n\\t\\t\\t\\t<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n\\t\\t\\t\\t<h4 class="modal-title" id="delete_box_label">Delete comic</h4>\\n\\t\\t\\t  </div>\\n\\t\\t\\t  <div class="modal-body">\\n\\t\\t\\t\\t<p>Are you sure you want to delete the comic "<span id="delete-comic-modal-comic-name"></span>"?</p>\\n\\t\\t\\t  </div>\\n\\t\\t\\t  <div class="modal-footer">\\n\\t\\t\\t\\t<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>\\n\\t\\t\\t\\t<a type="button" class="btn btn-danger" id="delete-comic-modal-button">Delete comic</a>\\n\\t\\t\\t  </div>\\n\\t\\t\\t</div>\\n\\t\\t  </div>\\n\\t\\t</div>\\n\\t\\t\\n\\t\\t<!-- Some JS we use on multiple pages -->\\n\\t\\t<script type="text/javascript">\\n\\t\\t\\t//Javascript to populate the delete comic modal with the correct link and text\\n\\t\\t\\t$(\\\'#delete-comic-modal\\\').on(\\\'show.bs.modal\\\', function(e) {\\n\\t\\t\\n\\t\\t\\t\\t//Get the comic delete url and box name from the clicked button\\\'s data attributes\\n\\t\\t\\t\\tvar comic_url = $(e.relatedTarget).data(\\\'comic-delete-url\\\');\\n\\t\\t\\t\\tvar comic_name = $(e.relatedTarget).data(\\\'comic-name\\\');\\n\\n\\t\\t\\t\\t//Set the modal text to display the comic name\\n\\t\\t\\t\\t$(\\\'#delete-comic-modal-comic-name\\\').text(comic_name);\\n\\t\\t\\n\\t\\t\\t\\t//Set the modal \\\'delete\\\' button to the correct link\\n\\t\\t\\t\\t$(\\\'#delete-comic-modal-button\\\').attr(\\\'href\\\', comic_url);\\n\\t\\t\\t});\\n\\t\\t</script>\\n\\t\\t\\n\\t\\t<!-- Add some additional js at the bottom -->\\n\\t\\t<script src="\', escape=False)\nresponse.write(URL(\'static\',\'js/bootstrap.min.js\'))\nresponse.write(\'"></script>\\n\\t\\t<script src="\', escape=False)\nresponse.write(URL(\'static\',\'js/web2py-bootstrap3.js\'))\nresponse.write(\'"></script>\\n    </body>\\n</html>\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p23
+sS'args'
+p24
+S'("name \'saved\' is not defined",)'
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.NameError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.NameError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p47
+sS'__doc__'
+p48
+S"'Name not found globally.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"name 'saved' is not defined"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\x00c\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>Longboxes</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-dfcc2f94-dde5-4f6e-9ff4-9d781036acb7<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_longboxes</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_welcome</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-954be7fb-b2af-4040-b48f-65314cfb347b<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>en-us</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=127.0.0.1-dfcc2f94-dde5-4f6e-9ff4-9d781036acb7; session_id_longboxes=127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8; session_id_welcome=127.0.0.1-954be7fb-b2af-4040-b48f-65314cfb347b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>localhost:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>http://localhost:8000/Longboxes/default/comic?id=1&amp;saved=True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/Longboxes/default/collection</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>62888</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>imac.local</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/welcome/&#x27;, &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/&#x27;, &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x1089509e0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;scheduler_groups&#x27;: None, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;imac.local&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>en-us</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=127.0.0.1-dfcc2f94-dde5-4f6e-9ff4-9d781036acb7; session_id_longboxes=127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8; session_id_welcome=127.0.0.1-954be7fb-b2af-4040-b48f-65314cfb347b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>localhost:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>http://localhost:8000/Longboxes/default/comic?id=1&amp;saved=True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>::1</div></td></tr><tr><td><div>imac.local</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/Longboxes/default/collection</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>62888</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/Longboxes/default/collection</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>imac.local</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.12.3-stable+timestamp.2015.08.19.00.18.03</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x10005b270&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x1088fe460&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x10cfb3ad0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x10005b270&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x1088fe460&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x10cfb3ad0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>collection</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/welcome/&#x27;, &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/&#x27;, &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x1089509e0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;scheduler_groups&#x27;: None, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;imac.local&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>::1</div></td></tr><tr><td><div>imac.local</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.12.3-stable+timestamp.2015.08.19.00.18.03</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_sheduler</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2015, 11, 30, 19, 49, 13, 681414)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/Longboxes/default/collection</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2015, 11, 30, 19, 49, 13, 681420)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x10cf93b90&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+sS'lnum'
+p66
+I227
+sS'lines'
+p67
+(dp68
+I224
+S'            ccode = code'
+p69
+sI225
+S'        else:'
+p70
+sI226
+S'            ccode = compile2(code, layer)'
+p71
+sI227
+S'        exec ccode in environment'
+p72
+sI228
+S'    except HTTP:'
+p73
+sI229
+S'        raise'
+p74
+sI230
+S'    except RestrictedError:'
+p75
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p76
+sI222
+S'    try:'
+p77
+sI223
+S'        if isinstance(code, types.CodeType):'
+p78
+ssS'call'
+p79
+S'(code=r"response.write(\'<!-- We extend the standard long...</script>\\n    </body>\\n</html>\\n\', escape=False)", environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'BUTTON\': <class \'gluon.html.BUTTON\'>, \'CAT\': <class \'gluon.html.CAT\'>, ...}, layer=\'/Users/garethhandley/Google Drive/University of ...lications/Longboxes/views/default/collection.html\')'
+p80
+sS'func'
+p81
+S'restricted'
+p82
+sa(dp83
+g62
+S'/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/views/default/collection.html'
+p84
+sg64
+(dp85
+sg66
+I61
+sg67
+(dp86
+I64
+S'response.write(\'\\n</div>\\n\\n<!-- User\\\'s boxes - they can click on each for a full breakdown -->\\n<div class="container">\\n\\n\\t<hr>\\n\\n\\t<h3>Boxes</h3>\\n\\t\\n\\t\\n\\t<!-- If this is the current user\\\'s collection then add a key so user\\\'s know what the buttons mean -->\\n\\t\', escape=False)'
+p87
+sI65
+S'if own_collection:'
+p88
+sI66
+S'    response.write(\'\\n\\t\\t<!-- This is not strictly necessary as the icons should make their meaning clear, but we put them here just in case -->\\n\\t\\t<p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> - Edit box details</p>\\n\\t\\t<p><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> - Delete box and move all comics to \\\'Unfiled\\\'</p>\\n\\t\', escape=False)'
+p89
+sI67
+S'    pass'
+p90
+sI68
+S"response.write('\\n\\n\\t<!-- We can dynamically change the number of boxes to be displayed on each row by changing this variables -->\\n\\t', escape=False)"
+p91
+sI69
+S'box_count = 0'
+p92
+sI70
+S"response.write('\\n\\t', escape=False)"
+p93
+sI71
+S'boxes_per_row = 4'
+p94
+sI52
+S"response.write(' collection.</p>\\n\\t\\t</div>\\n\\t</div>\\n\\t\\n\\t<!-- If we have deleted a comic or box then we display a message to confirm this -->\\n\\t', escape=False)"
+p95
+sI53
+S'if deleted:'
+p96
+sI54
+S'    response.write(\'\\n\\t\\t<div class="row">\\n\\t\\t\\t<div class="col-md-12">\\n\\t\\t\\t\\t<div class="alert alert-success alert-dismissible" role="alert">\\n  \\t\\t\\t\\t\\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n  \\t\\t\\t\\t\\t<!-- The exact text to display is determined by the controller and then sent to the view -->\\n  \\t\\t\\t\\t\\t<strong>\', escape=False)'
+p97
+sI55
+S'    response.write(deleted.title())'
+p98
+sI56
+S"    response.write(' deleted!</strong> ', escape=False)"
+p99
+sI57
+S'    response.write(deleted_text)'
+p100
+sI58
+S"    response.write('\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t\\n\\t', escape=False)"
+p101
+sI59
+S'    pass'
+p102
+sI60
+S"response.write('\\n\\t\\n\\t<!-- If we have saved a box then we display a message -->\\n\\t', escape=False)"
+p103
+sI61
+S'if saved:'
+p104
+sI62
+S'    response.write(\'\\n\\t\\t<div class="row">\\n\\t\\t\\t<div class="col-md-12">\\n\\t\\t\\t\\t<div class="alert alert-success alert-dismissible" role="alert">\\n  \\t\\t\\t\\t\\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n  \\t\\t\\t\\t\\t<strong>Box saved!</strong> Your changes to the box have been saved\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t\\n\\t\', escape=False)'
+p105
+sI63
+S'    pass'
+p106
+ssg79
+S'()'
+p107
+sg81
+S'<module>'
+p108
+sasS'pyver'
+p109
+S'Python 2.7.3: /Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/MacOS/python (prefix: /Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources)'
+p110
+sS'session'
+p111
+g57
+(S's\x89\n\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">auth</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">expiration</td><td style="vertical-align:top;">:</td><td><div>3600</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">hmac_key</td><td style="vertical-align:top;">:</td><td><div>adb3875a-1d9d-42f8-a97b-f6a8dba2b92f</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_visit</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2015, 11, 30, 19, 43, 23, 429323)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remember_me</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">user</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">first_name</td><td style="vertical-align:top;">:</td><td><div>User1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">id</td><td style="vertical-align:top;">:</td><td><div>1L</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_name</td><td style="vertical-align:top;">:</td><td><div>Person</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">registration_id</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">registration_key</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">reset_password_key</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">unfiled_id</td><td style="vertical-align:top;">:</td><td><div>10</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">username</td><td style="vertical-align:top;">:</td><td><div>user1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">user_groups</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">1</td><td style="vertical-align:top;">:</td><td><div>user_1</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_orderby</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">last_query</td><td style="vertical-align:top;">:</td><td><div>db.box_contents.id&gt;0</div></td></tr></table></div>'
+tRp112
+sS'etype'
+p113
+S"<type 'exceptions.NameError'>"
+p114
+sS'date'
+p115
+S'Mon Nov 30 19:49:13 2015'
+p116
+sS'response'
+p117
+g57
+(S's\xe1A\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x10711c3e8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_longboxes</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>/Longboxes/static/js/jquery.js</div></td></tr><tr><td><div>/Longboxes/static/css/calendar.css</div></td></tr><tr><td><div>/Longboxes/static/js/calendar.js</div></td></tr><tr><td><div>/Longboxes/static/js/web2py.js</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div>: </div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>table3cols</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Home</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/Longboxes/default/index</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>My Sites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>This App</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/design/Longboxes</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Controller</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/controllers/default.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>View</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/views/default/collection.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>DB Model</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Menu Model</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Layout</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Stylesheet</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/Longboxes/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Database</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/Longboxes/appadmin/index</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Errors</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/errors/Longboxes</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>About</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/about/Longboxes</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Download</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Support</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Demo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Quick Examples</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>FAQ</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Videos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Free Applications</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recipes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Preface</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Introduction</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Overview</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>The Core</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>The Views</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Database</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Forms and Validators</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Email and SMS</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Access Control</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Services</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Ajax Recipes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Components and Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Deployment Recipes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Other Recipes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Helping web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Community</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Groups</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Live Chat</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div>web2py, python, framework</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/collection/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_key</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_longboxes</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/sessions/07a/11b/127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8&#x27;, mode &#x27;rb+&#x27; at 0x10bf121e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/sessions/127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>79a9a8eebb68d36a7cf2fde9eda7aea0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-14a10aea-9797-4fde-9ed4-26cea121ffb8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_longboxes</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>Longboxes</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Longboxes</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>default/collection.html</div></td></tr></table></div>'
+tRp118
+sS'locals'
+p119
+(dp120
+S'Service'
+p121
+S"<class 'gluon.tools.Service'>"
+p122
+sS'OBJECT'
+p123
+S"<class 'gluon.html.OBJECT'>"
+p124
+sS'SQLDB'
+p125
+S"<class 'pydal.base.DAL'>"
+p126
+sg111
+S"<Storage {'_formkey[box_contents/32]': ['04796b6.../36]': ['233bf361-16c0-41f4-8ae8-f8aaa2e946bb']}>"
+p127
+sS'LINK'
+p128
+S"<class 'gluon.html.LINK'>"
+p129
+sS'BR'
+p130
+S"<class 'gluon.html.BR'>"
+p131
+sS'local_import'
+p132
+S'<function <lambda>>'
+p133
+sS'OPTGROUP'
+p134
+S"<class 'gluon.html.OPTGROUP'>"
+p135
+sS'__package__'
+p136
+S'None'
+p137
+sS'own_collection'
+p138
+S'True'
+p139
+sS'PRE'
+p140
+S"<class 'gluon.html.PRE'>"
+p141
+sS'IS_INT_IN_RANGE'
+p142
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p143
+sS'IS_LOWER'
+p144
+S"<class 'gluon.validators.IS_LOWER'>"
+p145
+sS'IS_STRONG'
+p146
+S"<class 'gluon.validators.IS_STRONG'>"
+p147
+sS'cache'
+p148
+S'<gluon.cache.Cache object>'
+p149
+sS'IS_IN_DB'
+p150
+S"<class 'gluon.validators.IS_IN_DB'>"
+p151
+sS'TAG'
+p152
+S'<gluon.html.__TAG__ object>'
+p153
+sS'SQLField'
+p154
+S"<class 'pydal.objects.Field'>"
+p155
+sS'mail'
+p156
+S'<gluon.tools.Mail object>'
+p157
+sS'BODY'
+p158
+S"<class 'gluon.html.BODY'>"
+p159
+sS'IS_DATE_IN_RANGE'
+p160
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p161
+sS'IFRAME'
+p162
+S"<class 'gluon.html.IFRAME'>"
+p163
+sS'URL'
+p164
+S'<function URL>'
+p165
+sS'__file__'
+p166
+S"'/Users/garethhandley/Google Drive/University of ...lications/Longboxes/views/default/collection.html'"
+p167
+sS'db'
+p168
+S'<DAL uri="sqlite://longboxes.db">'
+p169
+sS'auth'
+p170
+S'<gluon.tools.Auth object>'
+p171
+sS'P'
+S"<class 'gluon.html.P'>"
+p172
+sS'boxes'
+p173
+S'<Rows (6)>'
+p174
+sS'TFOOT'
+p175
+S"<class 'gluon.html.TFOOT'>"
+p176
+sS'XHTML'
+p177
+S"<class 'gluon.html.XHTML'>"
+p178
+sS'ON'
+p179
+g139
+sS'OL'
+p180
+S"<class 'gluon.html.OL'>"
+p181
+sS'TEXTAREA'
+p182
+S"<class 'gluon.html.TEXTAREA'>"
+p183
+sS'MENU'
+p184
+S"<class 'gluon.html.MENU'>"
+p185
+sS'IS_IPADDRESS'
+p186
+S"<class 'gluon.validators.IS_IPADDRESS'>"
+p187
+sS'IS_IMAGE'
+p188
+S"<class 'gluon.validators.IS_IMAGE'>"
+p189
+sS'EM'
+p190
+S"<class 'gluon.html.EM'>"
+p191
+sS'CODE'
+p192
+S"<class 'gluon.html.CODE'>"
+p193
+sS'HTTP'
+p194
+S"<class 'gluon.http.HTTP'>"
+p195
+sS'HR'
+p196
+S"<class 'gluon.html.HR'>"
+p197
+sS'IS_DATETIME'
+p198
+S"<class 'gluon.validators.IS_DATETIME'>"
+p199
+sS'STYLE'
+p200
+S"<class 'gluon.html.STYLE'>"
+p201
+sS'LABEL'
+p202
+S"<class 'gluon.html.LABEL'>"
+p203
+sS'CLEANUP'
+p204
+S"<class 'gluon.validators.CLEANUP'>"
+p205
+sS'plugins'
+p206
+S'<gluon.tools.PluginManager object>'
+p207
+sS'SELECT'
+p208
+S"<class 'gluon.html.SELECT'>"
+p209
+sS'CENTER'
+p210
+S"<class 'gluon.html.CENTER'>"
+p211
+sS'custom_auth_table'
+p212
+S'<Table auth_user (id,first_name,last_name,unfile...stration_key,reset_password_key,registration_id)>'
+p213
+sS'deleted'
+p214
+S'None'
+p215
+sS'Auth'
+p216
+S"<class 'gluon.tools.Auth'>"
+p217
+sS'DEVELOPMENT_MENU'
+p218
+g139
+sS'create_unfiled_box'
+p219
+S'<function create_unfiled_box>'
+p220
+sS'IS_EQUAL_TO'
+p221
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p222
+sS'HTML'
+p223
+S"<class 'gluon.html.HTML'>"
+p224
+sS'SQLFORM'
+p225
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p226
+sS'LOAD'
+p227
+S'<function LOAD>'
+p228
+sS'redirect'
+p229
+S'<function redirect>'
+p230
+sS'FIELDSET'
+p231
+S"<class 'gluon.html.FIELDSET'>"
+p232
+sS'__builtins__'
+p233
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p234
+sS'embed64'
+p235
+S'<function embed64>'
+p236
+sS'IS_LIST_OF'
+p237
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p238
+sS'INPUT'
+p239
+S"<class 'gluon.html.INPUT'>"
+p240
+sS'EMBED'
+p241
+S"<class 'gluon.html.EMBED'>"
+p242
+sS'_'
+S'<function _>'
+p243
+sS'H2'
+p244
+S"<class 'gluon.html.H2'>"
+p245
+sS'H3'
+p246
+S"<class 'gluon.html.H3'>"
+p247
+sS'BUTTON'
+p248
+S"<class 'gluon.html.BUTTON'>"
+p249
+sS'H1'
+p250
+S"<class 'gluon.html.H1'>"
+p251
+sS'H6'
+p252
+S"<class 'gluon.html.H6'>"
+p253
+sS'H4'
+p254
+S"<class 'gluon.html.H4'>"
+p255
+sS'H5'
+p256
+S"<class 'gluon.html.H5'>"
+p257
+sS'UL'
+p258
+S"<class 'gluon.html.UL'>"
+p259
+sS'IS_UPPER'
+p260
+S"<class 'gluon.validators.IS_UPPER'>"
+p261
+sS'xmlescape'
+p262
+S'<function xmlescape>'
+p263
+sS'IS_TIME'
+p264
+S"<class 'gluon.validators.IS_TIME'>"
+p265
+sS'box_saved'
+p266
+S'False'
+p267
+sS'OPTION'
+p268
+S"<class 'gluon.html.OPTION'>"
+p269
+sS'TITLE'
+p270
+S"<class 'gluon.html.TITLE'>"
+p271
+sS'CRYPT'
+p272
+S"<class 'gluon.validators.CRYPT'>"
+p273
+sS'IS_EMPTY_OR'
+p274
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p275
+sS'MARKMIN'
+p276
+S"<class 'gluon.html.MARKMIN'>"
+p277
+sS'__name__'
+p278
+S"'__restricted__'"
+p279
+sS'STRONG'
+p280
+S"<class 'gluon.html.STRONG'>"
+p281
+sS'COL'
+p282
+S"<class 'gluon.html.COL'>"
+p283
+sS'service'
+p284
+S'<gluon.tools.Service object>'
+p285
+sS'SCRIPT'
+p286
+S"<class 'gluon.html.SCRIPT'>"
+p287
+sS'deleted_text'
+p288
+S'None'
+p289
+sS'name_text'
+p290
+S"'your own'"
+p291
+sS'TABLE'
+p292
+S"<class 'gluon.html.TABLE'>"
+p293
+sS'IS_IPV4'
+p294
+S"<class 'gluon.validators.IS_IPV4'>"
+p295
+sS'IS_LENGTH'
+p296
+S"<class 'gluon.validators.IS_LENGTH'>"
+p297
+sS'IS_IPV6'
+p298
+S"<class 'gluon.validators.IS_IPV6'>"
+p299
+sS'XML'
+p300
+S"<class 'gluon.html.XML'>"
+p301
+sS'B'
+S"<class 'gluon.html.B'>"
+p302
+sS'IMG'
+p303
+S"<class 'gluon.html.IMG'>"
+p304
+sS'SQLTABLE'
+p305
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p306
+sS'IS_MATCH'
+p307
+S"<class 'gluon.validators.IS_MATCH'>"
+p308
+sS'IS_ALPHANUMERIC'
+p309
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p310
+sS'SPAN'
+p311
+S"<class 'gluon.html.SPAN'>"
+p312
+sS'IS_JSON'
+p313
+S"<class 'gluon.validators.IS_JSON'>"
+p314
+sS'comics'
+p315
+S'<Rows (4)>'
+p316
+sS'IS_SLUG'
+p317
+S"<class 'gluon.validators.IS_SLUG'>"
+p318
+sS'BEAUTIFY'
+p319
+S"<class 'gluon.html.BEAUTIFY'>"
+p320
+sS'META'
+p321
+S"<class 'gluon.html.META'>"
+p322
+sS'IS_DATE'
+p323
+S"<class 'gluon.validators.IS_DATE'>"
+p324
+sS'IS_EMAIL'
+p325
+S"<class 'gluon.validators.IS_EMAIL'>"
+p326
+sS'IS_NOT_EMPTY'
+p327
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p328
+sS'IS_FLOAT_IN_RANGE'
+p329
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p330
+sS'TBODY'
+p331
+S"<class 'gluon.html.TBODY'>"
+p332
+sS'CAT'
+p333
+S"<class 'gluon.html.CAT'>"
+p334
+sS'Field'
+p335
+S"<class 'pydal.objects.Field'>"
+p336
+sS'IS_LIST_OF_EMAILS'
+p337
+S"<class 'gluon.validators.IS_LIST_OF_EMAILS'>"
+p338
+sS'DIV'
+p339
+S"<class 'gluon.html.DIV'>"
+p340
+sS'LEGEND'
+p341
+S"<class 'gluon.html.LEGEND'>"
+p342
+sS'COLGROUP'
+p343
+S"<class 'gluon.html.COLGROUP'>"
+p344
+sS'DAL'
+p345
+S"<class 'pydal.base.DAL'>"
+p346
+sS'ASSIGNJS'
+p347
+S'<function ASSIGNJS>'
+p348
+sS'TR'
+p349
+S"<class 'gluon.html.TR'>"
+p350
+sS'LI'
+p351
+S"<class 'gluon.html.LI'>"
+p352
+sS'TH'
+p353
+S"<class 'gluon.html.TH'>"
+p354
+sS'TD'
+p355
+S"<class 'gluon.html.TD'>"
+p356
+sS'PluginManager'
+p357
+S"<class 'gluon.tools.PluginManager'>"
+p358
+sS'IS_URL'
+p359
+S"<class 'gluon.validators.IS_URL'>"
+p360
+sS'A'
+S"<class 'gluon.html.A'>"
+p361
+sS'HEAD'
+p362
+S"<class 'gluon.html.HEAD'>"
+p363
+sS'IS_DATETIME_IN_RANGE'
+p364
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p365
+sS'FORM'
+p366
+S"<class 'gluon.html.FORM'>"
+p367
+sS'I'
+S"<class 'gluon.html.I'>"
+p368
+sS'IS_NOT_IN_DB'
+p369
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p370
+sg117
+S"<Storage {'body': <cStringIO.StringO object at 0...0x10c6ee398>, 'view': 'default/collection.html'}>"
+p371
+sS'THEAD'
+p372
+S"<class 'gluon.html.THEAD'>"
+p373
+sS'ANY_OF'
+p374
+S"<class 'gluon.validators.ANY_OF'>"
+p375
+sS'IS_NULL_OR'
+p376
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p377
+sg56
+S"<Storage {'_vars': None, 'function': 'collection...app/Contents/Resources/applications/Longboxes/'}>"
+p378
+sS'IS_EXPR'
+p379
+S"<class 'gluon.validators.IS_EXPR'>"
+p380
+sS'T'
+S'<gluon.languages.translator object>'
+p381
+sS'IS_IN_SET'
+p382
+S"<class 'gluon.validators.IS_IN_SET'>"
+p383
+sS'IS_UPLOAD_FILENAME'
+p384
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p385
+sS'title'
+p386
+S"'Your collection'"
+p387
+sS'TT'
+p388
+S"<class 'gluon.html.TT'>"
+p389
+sS'IS_DECIMAL_IN_RANGE'
+p390
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p391
+sssS'traceback'
+p392
+S'Traceback (most recent call last):\n  File "/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/gluon/restricted.py", line 227, in restricted\n  File "/Users/garethhandley/Google Drive/University of York/IAPT (Interactive Application Programming Techniques)/Assessments/Assessment 1 - Individual/web2py/web2py.app/Contents/Resources/applications/Longboxes/views/default/collection.html", line 61, in <module>\nNameError: name \'saved\' is not defined\n'
+p393
+s.

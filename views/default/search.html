@@ -1,35 +1,97 @@
+<!-- We extend the standard longboxes-layout.html -->
 {{extend 'longboxes-layout.html'}}
 
 <!-- Search results -->
 <div class="container">
 	
+	<!-- Include the search form at the top of the page -->
 	<div class="row text-center">
-		<h2>Comic Search</h2>
-		{{=form}}
+		<h1>Comic Search</h1>
+		<p>You can search comics by title, writers, artists or publisher. Simply enter your search term into the box below and click search!</p>
+		<!-- Display the search form -->
+		{{=search_form}}
 		{{pass}}
 	</div>
 		
 	<hr>
 	
-	<div class="row text-center">
+	<!-- Only display search results if we are performing a search -->
+	{{if performing_search:}}
 	
-	<h3>Search results:</h3>
-	
-		{{for comic in comics:}}
+		<div class="row text-center">
+			<h2>Search results:</h2>
+			<p>You're searching for '{{=search_term}}'</p>
+		</div>
+
+		<!-- If we are logged in as a user we will display their comics in a separate section -->
+		{{if auth.user_id is not None:}}
 		
-			<div class="col-md-4">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 100px;"></img>
-						{{=H4(comic.comics.title)}}
-						<p>Issue Number: {{=comic.comics.issue_number}}</p>
-						<p>Owner: {{=comic.comics.user_id}}</p>
-						<a class="btn btn-default" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
-					</div>
-				</div>
+			<!-- The current user's comics -->
+			<div class="row text-center">
+		
+				<h3>Your comics</h3>
+
+				<!-- If we have found any of the user's comics then we will display them -->
+				{{if users_comics:}}
+	
+						{{for comic in users_comics:}}
+	
+							<div class="col-md-4">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 100px;"></img>
+										{{=H4(comic.comics.title)}}
+										<p>Issue Number: {{=comic.comics.issue_number}}</p>
+										<p>Owner: <a href="{{=URL('collection',vars={'user':comic.comics.user_id})}}">{{=comic.auth_user.username}}</a></p>
+										<a class="btn btn-default" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
+									</div>
+								</div>
+							</div>
+		
+						{{pass}}
+					
+				<!-- Otherwise tell the user they don't have any comics matching this description -->
+				{{else:}}
+				
+					<p>We couldn't find any comics in your collection that matched that search term.</p>
+					<p><em>Remember, you can add comics from other people's collections to your own by clicking the 'Add to my collection' button when viewing a comic.</em></p>
+	
+				{{pass}}
+		
 			</div>
-			
+	
 		{{pass}}
-	</div>
+	
+		<!-- Public comics -->
+		<div class="row text-center">
+	
+			<h3>Public comics</h3>
+	
+			<!-- If we have public comics then display them -->
+			{{if public_comics:}}
+	
+				{{for comic in public_comics:}}
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img src="{{=URL('download',args=comic.comics.cover)}}" style="max-height: 100px;"></img>
+								{{=H4(comic.comics.title)}}
+								<p>Issue Number: {{=comic.comics.issue_number}}</p>
+								<p>Owner: <a href="{{=URL('collection',vars={'user':comic.comics.user_id})}}">{{=comic.auth_user.username}}</a></p>
+								<a class="btn btn-default" href="{{=URL('comic',vars={'id':comic.comics.id})}}">Full details</a>
+							</div>
+						</div>
+					</div>
+				{{pass}}
+	
+			<!-- Otherwise tell the user we couldn't find any results -->
+			{{else:}}
+				<p>We couldn't find any public comics that match that search term.</p>
+	
+			{{pass}}
+	
+		</div>
+		
+	{{pass}}
 	
 </div>
