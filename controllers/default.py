@@ -431,7 +431,7 @@ def user():
 
     # Custom section to hide certain fields on user registration
     # This code is from - https://groups.google.com/forum/#!topic/web2py/N9CbNvFneZ8
-    if 'register' in request.args:
+    if 'register' in request.args or 'profile' in request.args:
         fields_to_hide = ['unfiled_id']
         for fieldname in fields_to_hide:
             field = db.auth_user[fieldname]

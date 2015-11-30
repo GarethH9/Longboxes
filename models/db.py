@@ -31,9 +31,10 @@ auth.settings.login_next = URL('collection')
 auth.settings.actions_disabled = ['retrieve_username', 'request_reset_password']
 
 ## Add a setting which will add an 'Unfiled' box for the user when they sign up
-#auth.settings.register_onaccept.append(lambda form: db.boxes.insert(user_id = form.vars.id, name = 'Unfiled', created_date = request.now, public = False))
 auth.settings.register_onaccept = create_unfiled_box
 
+## Set the style of the user forms
+auth.settings.formstyle = 'bootstrap3_inline'
 
 db.define_table(
     auth.settings.table_user_name,

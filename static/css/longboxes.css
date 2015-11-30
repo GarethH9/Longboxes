@@ -29,6 +29,12 @@ body {
 	margin-top: 5px;
 }
 
+/* Style to add some spacing around the search button */
 .search-input {
+	margin-right: 5px;
+}
+
+/* Ensures that the buttons are spaced out on the user forms */
+form .btn{
 	margin-right: 5px;
 }
