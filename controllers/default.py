@@ -409,8 +409,17 @@ def update_comic():
     # Process the response from the form and display the relevant message
     if form.process().accepted:
         response.flash = 'Comic saved!'
-        # Redirect to the comic page if the changes were successful
-        redirect(URL('comic',vars={'id':form.vars.id,'saved':True}))
+
+        # Check if comic already exists in box_contents
+        comic = db(db.box_contents.id == form.vars.id).select()
+
+        if not comic:
+            # Add the comic to the user's unfiled box
+            db.box_contents.insert(box_id = unfiled_box_id, comic_id = form.vars.id)
+            redirect(URL('manage_boxes',vars={'comic':form.vars.id,'new_comic':True}))
+        else:
+            # Redirect to the comic page if the changes were successful
+            redirect(URL('comic',vars={'id':form.vars.id,'saved':True}))
 
     elif form.errors:
         response.flash = 'The form has errors'
