@@ -15,6 +15,12 @@
 # As such this shouldn't be a problem, but this mechanism is used in case the user tries to manually alter URLs
 # For better feedback on user actions a 'you're not allowed to see this' page should be used instead
 
+# NOTE - URL VARIABLES
+#
+# Longboxes currently uses GET variables for passing information.
+# This approach was selected as it 'theoretically' allows user's to bookmark pages and get to them without requiring POST data
+# The variable names are also displayed in the URLs as this was useful for debugging. Pages could now be change to use different URL var formats
+
 # Search form used throughout the application
 search_form = FORM('Search for a comic: ', INPUT(_name='search', requires=IS_NOT_EMPTY()) ,INPUT(_type='submit', _value='Search'), _action=URL('search'), _class='form-inline')
 input_controls = search_form.elements(_type='text')
