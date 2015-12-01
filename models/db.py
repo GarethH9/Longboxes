@@ -31,10 +31,9 @@ auth.settings.login_next = URL('collection')
 auth.settings.actions_disabled = ['retrieve_username', 'request_reset_password']
 
 ## Add a setting which will add an 'Unfiled' box for the user when they sign up
+#auth.settings.register_onaccept.append(lambda form: db.boxes.insert(user_id = form.vars.id, name = 'Unfiled', created_date = request.now, public = False))
 auth.settings.register_onaccept = create_unfiled_box
 
-## Set the style of the user forms
-auth.settings.formstyle = 'bootstrap3_inline'
 
 db.define_table(
     auth.settings.table_user_name,
@@ -97,12 +96,12 @@ auth.settings.reset_password_requires_verification = True
 
 #comics table
 db.define_table('comics',
-				Field('title', type='text', requires=IS_NOT_EMPTY()),
+				Field('title', type='string', requires=IS_NOT_EMPTY()),
 				Field('cover', type='upload', requires=IS_NOT_EMPTY()),
 				Field('issue_number', type='integer', requires=IS_NOT_EMPTY()),
-				Field('writers', type='text', requires=IS_NOT_EMPTY()),
-				Field('artists', type='text', requires=IS_NOT_EMPTY()),
-				Field('publisher', type='text', requires=IS_NOT_EMPTY()),
+				Field('writers', type='string', requires=IS_NOT_EMPTY()),
+				Field('artists', type='string', requires=IS_NOT_EMPTY()),
+				Field('publisher', type='string', requires=IS_NOT_EMPTY()),
 				Field('description', type='text', requires=IS_NOT_EMPTY()),
                                 Field('user_id', db.auth_user, requires=IS_NOT_EMPTY()))
 			
