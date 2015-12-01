@@ -206,7 +206,7 @@ def collection():
     else:
         box_saved = False
 
-    return dict(boxes = boxes, comics = comics, name_text = name_text, title = title, own_collection = own_collection, deleted = deleted, deleted_text = deleted_text, box_saved = box_saved)
+    return dict(boxes = boxes, comics = comics, name_text = name_text, title = title, own_collection = own_collection, deleted = deleted, deleted_text = deleted_text, box_saved = box_saved, unfiled_box_id = unfiled_box_id)
 
 # Controller to add a comic to your collection
 def add_to_collection():
