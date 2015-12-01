@@ -76,6 +76,42 @@ def search():
     
     return dict(search_form=search_form,users_comics=users_comics, public_comics=public_comics, performing_search=performing_search, search_term = request.vars.search)
 
+# Controller for the user search
+def user_search():
+
+    # Search form for searching for a user
+    user_search_form = FORM('Search for a user: ', INPUT(_name='search', requires=IS_NOT_EMPTY()) ,INPUT(_type='submit', _value='Search'), _action=URL('user_search'), _class='form-inline')
+    user_search_input_controls = user_search_form.elements(_type='text')
+    for input_control in user_search_input_controls:
+        input_control['_class'] = 'form-control search-input'
+
+    # If we have a search term then we will perform a search
+    if request.vars.search is not None:
+        # Format the search term so we can use it in queries
+        search_term="%"+request.vars.search+"%"
+
+        # Find the user's that match the search
+        users = db((db.auth_user.username.like(search_term)) | (db.auth_user.first_name.like(search_term)) | (db.auth_user.last_name.like(search_term))).select(db.auth_user.username, db.auth_user.id, db.auth_user.first_name, db.auth_user.last_name)
+        
+        # Set a flag to indicate we are attempting a search
+        performing_search = True
+
+        # Set the search box to the term that was searched
+        user_search_form.vars.search = request.vars.search
+
+        # Process the form
+        if search_form.process().accepted:
+            response.flash = 'form accepted'
+        elif search_form.errors:
+            response.flash = 'form has errors'
+        
+    # If we are not searching then return no results
+    else:
+        users = dict()
+        performing_search = False
+
+    return dict(user_search_form = user_search_form, users = users, performing_search = performing_search, search_term = request.vars.search)
+
 # Controller for the comic viewer page
 def comic():
     # Check if we have a comic id set as a GET var

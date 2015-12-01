@@ -1,0 +1,330 @@
+(dp1
+S'output'
+p2
+S'missing "pass" in view'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'response.write(\'<!-- We extend the standard longboxes-layout.html -->\\n\', escape=False)\nresponse.write(\'<!DOCTYPE html>\\n\\t<head>\\n\\t\\t<meta charset="utf-8">\\n\\t\\n\\t\\t<!--  Mobile Viewport Fix\\n          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag\\n          device-width: Occupy full width of the screen in its current orientation\\n          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height\\n          user-scalable = yes allows the user to zoom in -->\\n\\t\\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\\n\\t\\n\\t\\t<title>Longboxes</title>\\n\\t\\n\\t\\t<!-- include stylesheets -->\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'css/bootstrap.min.css\'))\nresponse.write(\'"/>\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'css/longboxes.css\'))\nresponse.write(\'"/>\\n\\t\\t\\n\\t\\t<!-- Favicon image is defined here - currently just using default web2py icon -->\\n\\t\\t<link rel="shortcut icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'images/favicon.ico\'))\nresponse.write(\'" type="image/x-icon">\\n\\t\\t<link rel="apple-touch-icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'images/favicon.png\'))\nresponse.write(\'">\\n\\t\\n\\t\\t<!-- Include the standard web2.py js,  css etc. -->\\n\\t\\t\', escape=False)\nresponse.write(\'<script type="text/javascript"><!--\\n    // These variables are used by the web2py_ajax_init function in web2py_ajax.js (which is loaded below).\\n    var w2p_ajax_confirm_message = "\', escape=False)\nresponse.write(T(\'Are you sure you want to delete this object?\'))\nresponse.write(\'";\\n    var w2p_ajax_disable_with_message = "\', escape=False)\nresponse.write(T(\'Working...\'))\nresponse.write(\'";\\n    var w2p_ajax_date_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d\'))\nresponse.write(\'";\\n    var w2p_ajax_datetime_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d %H:%M:%S\'))\nresponse.write(\'";\\n    var ajax_error_500 = \\\'\', escape=False)\nresponse.write(T.M(\'An error occured, please [[reload %s]] the page\') % URL(args=request.args, vars=request.get_vars))\nresponse.write("\'\\n    //--></script>\\n", escape=False)\nresponse.files.insert(0,URL(\'static\',\'js/jquery.js\'))\nresponse.files.insert(1,URL(\'static\',\'css/calendar.css\'))\nresponse.files.insert(2,URL(\'static\',\'js/calendar.js\'))\nresponse.files.insert(3,URL(\'static\',\'js/web2py.js\'))\nresponse.include_meta()\nresponse.include_files()\nresponse.write(\'\\n\', escape=False)\nresponse.write(\'\\n\\n\\t</head>\\n\\t\\n\\t<body>\\n\\t\\t<!-- Used for when we want to flash a response -->\\n\\t\\t<!--<div class="flash alert alert-dismissable">\', escape=False)\nresponse.write(response.flash or \'\')\nresponse.write(\'</div>-->\\n\\t\\t\\n\\t\\t<!-- NAVBAR - Standard bootstrap navbar is used here -->\\n\\t\\t<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">\\n\\t\\t\\t<div class="container-fluid">\\n\\t\\t\\t\\t<div class="navbar-header">\\n\\t\\t\\t\\t\\t<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">\\n\\t\\t\\t\\t\\t\\t<span class="sr-only">Toggle navigation</span>\\n\\t\\t\\t\\t\\t\\t<span class="icon-bar"></span>\\n\\t\\t\\t\\t\\t\\t<span class="icon-bar"></span>\\n\\t\\t\\t\\t\\t\\t<span class="icon-bar"></span>\\n\\t\\t\\t\\t\\t</button>\\n\\t\\t\\t\\t\\t<!-- Set our brand and make it always navigate to the index -->\\n\\t\\t\\t\\t\\t<a class="navbar-brand" href="\', escape=False)\nresponse.write(URL(\'index\'))\nresponse.write(\'">Longboxes</a>\\n\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t</div>\\n\\t\\t\\n\\t\\t\\t\\t<!-- This is the portion of the navbar that will \\\'collapse\\\' away on small screens -->\\n\\t\\t\\t\\t<div class="collapse navbar-collapse">\\n\\t\\t\\t\\t\\t<!-- Navbar left - links that appear here -->\\n\\t\\t\\t\\t\\t<ul class="nav navbar-nav">\\n\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'index\'))\nresponse.write(\'">Home</a></li>\\n\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'search\'))\nresponse.write(\'">Search</a></li>\\n\\t\\t\\t\\t\\t</ul>\\n\\t\\t\\t\\t\\t<!-- Navbar right - links that appear here -->\\n\\t\\t\\t\\t\\t<ul class="nav navbar-nav navbar-right">\\n\\t\\t\\t\\t\\t\\t<!-- If the user is logged in we add some quick links -->\\n\\t\\t\\t\\t\\t\\t\', escape=False)\nif auth.is_logged_in():\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(\'update_comic\'))\n    response.write(\'"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a comic!</a></li>\\n\\t\\t\\t\\t\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(\'collection\'))\n    response.write(\'">My Collection</a></li>\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n    pass\nresponse.write("\\n\\t\\t\\t\\t\\t\\t<!-- Add the standard web2py auth navbar elements -->\\n\\t\\t\\t\\t\\t\\t<!-- If we wanted to disable signup we can do so by altering the \'referrer_actions\' -->\\n\\t\\t\\t\\t\\t\\t", escape=False)\nresponse.write(\'auth\' in globals() and auth.navbar(\'Welcome\',mode=\'dropdown\',referrer_actions=[\'register\', \'profile\']) or \'\')\nresponse.write(\'\\n\\t\\t\\t\\t\\t</ul>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t</div>\\n\\t\\t</nav>\\n   \\n   \\t\\t<!-- This is where we will include the individual pages that extend this file -->\\n\\t\\t\', escape=False)\nresponse.write(\'\\n\\n<!-- Search results -->\\n<div class="container">\\n\\t\\n\\t<!-- Include the search form at the top of the page -->\\n\\t<div class="row text-center">\\n\\t\\t<h1>User Search</h1>\\n\\t\\t<p>You can search for a user by simply entering their username and clicking search!</p>\\n\\t\\t<!-- Display the search form -->\\n\\t\\t\', escape=False)\nresponse.write(user_search_form)\nresponse.write(\'\\n\\t\\t\', escape=False)\npass\nresponse.write(\'\\n\\t</div>\\n\\t\\t\\n\\t<hr>\\n\\t\\n\\t<!-- Only display search results if we are performing a search -->\\n\\t\', escape=False)\nif performing_search:\n    response.write(\'\\n\\t\\n\\t\\t<div class="row text-center">\\n\\t\\t\\t<h2>Search results:</h2>\\n\\t\\t\\t<p>You\\\'re searching for users with the username: \\\'\', escape=False)\n    response.write(search_term)\n    response.write(\'\\\'</p>\\n\\t\\t</div>\\n\\t\\t\\n\\t\\t<!-- Display users -->\\n\\t\\t<div class="row text-center">\\n\\t\\n\\t\\t\\t\', escape=False)\n    if users:\n        response.write(\'\\n\\t\\t\\t\\t\', escape=False)\n        for user in users:\n            response.write(\'\\n\\t\\t\\t\\t<div class="col-md-3">\\n\\t\\t\\t\\t\\t<div class="panel panel-default">\\n\\t\\t\\t\\t\\t\\t<div class="panel-body">\\n\\t\\t\\t\\t\\t\\t\\t<h4>\', escape=False)\n            user.first_name\n            response.write(\' \', escape=False)\n            user.last_name\n            response.write(\'</h4>\\n\\t\\t\\t\\t\\t\\t\\t<h4><small>\', escape=False)\n            user.username\n            response.write(\'</small></h4>\\n\\t\\t\\t\\t\\t\\t\\t<a class="btn btn-default" href="\', escape=False)\n            response.write(URL(\'collection\',vars={\'user\':user.id}))\n            response.write(\'">View collection</a>\\n\\t\\t\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t</div>\\n\\t\\t\\t\', escape=False)\n        else:\n            response.write(\'\\n\\t\\t\\t\\tNo results\\n\\t\\t\\t\', escape=False)\n            pass\n        response.write(\'\\n\\t\\n\\t\\t</div>\\n\\t\\t\\n\\t\\t\\n\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\n</div>\', escape=False)\n    response.write(\'\\n \\n \\t\\t<!-- FOOTER - Standard across all pages -->\\n\\t\\t<footer class="footer">\\n\\t\\t\\t<div class="container-fluid">\\n\\t\\t\\t\\t<hr>\\n\\t\\t\\t\\t<!-- Add an up-to-date copyright notice -->\\n\\t\\t\\t\\t\', escape=False)\n    response.write(T(\'Copyright\'))\n    response.write(\' &#169; \', escape=False)\n    response.write(request.now.year)\n    response.write(\'\\n\\t\\t\\t</div>\\n\\t\\t</footer>\\n\\n\\t\\t<!-- Modal for deleting a comic -->\\n\\t\\t<div class="modal fade" id="delete-comic-modal" tabindex="-1" role="dialog" aria-labelledby="delete_comic_label">\\n\\t\\t  <div class="modal-dialog" role="document">\\n\\t\\t\\t<div class="modal-content">\\n\\t\\t\\t  <div class="modal-header">\\n\\t\\t\\t\\t<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\\n\\t\\t\\t\\t<h4 class="modal-title" id="delete_box_label">Delete comic</h4>\\n\\t\\t\\t  </div>\\n\\t\\t\\t  <div class="modal-body">\\n\\t\\t\\t\\t<p>Are you sure you want to delete the comic "<span id="delete-comic-modal-comic-name"></span>"?</p>\\n\\t\\t\\t  </div>\\n\\t\\t\\t  <div class="modal-footer">\\n\\t\\t\\t\\t<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>\\n\\t\\t\\t\\t<a type="button" class="btn btn-danger" id="delete-comic-modal-button">Delete comic</a>\\n\\t\\t\\t  </div>\\n\\t\\t\\t</div>\\n\\t\\t  </div>\\n\\t\\t</div>\\n\\t\\t\\n\\t\\t<!-- Some JS we use on multiple pages -->\\n\\t\\t<script type="text/javascript">\\n\\t\\t\\t//Javascript to populate the delete comic modal with the correct link and text\\n\\t\\t\\t$(\\\'#delete-comic-modal\\\').on(\\\'show.bs.modal\\\', function(e) {\\n\\t\\t\\n\\t\\t\\t\\t//Get the comic delete url and box name from the clicked button\\\'s data attributes\\n\\t\\t\\t\\tvar comic_url = $(e.relatedTarget).data(\\\'comic-delete-url\\\');\\n\\t\\t\\t\\tvar comic_name = $(e.relatedTarget).data(\\\'comic-name\\\');\\n\\n\\t\\t\\t\\t//Set the modal text to display the comic name\\n\\t\\t\\t\\t$(\\\'#delete-comic-modal-comic-name\\\').text(comic_name);\\n\\t\\t\\n\\t\\t\\t\\t//Set the modal \\\'delete\\\' button to the correct link\\n\\t\\t\\t\\t$(\\\'#delete-comic-modal-button\\\').attr(\\\'href\\\', comic_url);\\n\\t\\t\\t});\\n\\t\\t</script>\\n\\t\\t\\n\\t\\t<!-- Add some additional js at the bottom -->\\n\\t\\t<script src="\', escape=False)\n    response.write(URL(\'static\',\'js/bootstrap.min.js\'))\n    response.write(\'"></script>\\n\\t\\t<script src="\', escape=False)\n    response.write(URL(\'static\',\'js/web2py-bootstrap3.js\'))\n    response.write(\'"></script>\\n    </body>\\n</html>\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__module__'
+p12
+S"'gluon.rocket'"
+p13
+sS'__getslice__'
+p14
+S"<method-wrapper '__getslice__' of SocketTimeout object>"
+p15
+sS'__str__'
+p16
+S"<method-wrapper '__str__' of SocketTimeout object>"
+p17
+sS'__reduce__'
+p18
+S'<built-in method __reduce__ of SocketTimeout object>'
+p19
+sS'__dict__'
+p20
+S'{}'
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of SocketTimeout object>'
+p23
+sS'__weakref__'
+p24
+S'None'
+p25
+sS'__init__'
+p26
+S"<method-wrapper '__init__' of SocketTimeout object>"
+p27
+sS'__setattr__'
+p28
+S"<method-wrapper '__setattr__' of SocketTimeout object>"
+p29
+sS'__reduce_ex__'
+p30
+S'<built-in method __reduce_ex__ of SocketTimeout object>'
+p31
+sS'__new__'
+p32
+S'<built-in method __new__ of type object>'
+p33
+sS'__format__'
+p34
+S'<built-in method __format__ of SocketTimeout object>'
+p35
+sS'__class__'
+p36
+S"<class 'gluon.rocket.SocketTimeout'>"
+p37
+sS'__doc__'
+p38
+S"'Exception for when a socket times out between requests.'"
+p39
+sS'__getitem__'
+p40
+S"<method-wrapper '__getitem__' of SocketTimeout object>"
+p41
+sS'__setstate__'
+p42
+S'<built-in method __setstate__ of SocketTimeout object>'
+p43
+sS'__getattribute__'
+p44
+S"<method-wrapper '__getattribute__' of SocketTimeout object>"
+p45
+sS'args'
+p46
+S"('Socket timed out before request.',)"
+p47
+sS'__subclasshook__'
+p48
+S'<built-in method __subclasshook__ of type object>'
+p49
+sS'__unicode__'
+p50
+S'<built-in method __unicode__ of SocketTimeout object>'
+p51
+sS'__delattr__'
+p52
+S"<method-wrapper '__delattr__' of SocketTimeout object>"
+p53
+sS'__repr__'
+p54
+S"<method-wrapper '__repr__' of SocketTimeout object>"
+p55
+sS'__hash__'
+p56
+S"<method-wrapper '__hash__' of SocketTimeout object>"
+p57
+ssS'evalue'
+p58
+S'Socket timed out before request.'
+p59
+sS'frames'
+p60
+(lp61
+(dp62
+S'file'
+p63
+S'/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py'
+p64
+sS'dump'
+p65
+(dp66
+sS'lnum'
+p67
+I1337
+sS'lines'
+p68
+(dp69
+I1332
+S'            # Enter connection serve loop'
+p70
+sI1333
+S'            while True:'
+p71
+sI1334
+S'                if __debug__:'
+p72
+sI1335
+S"                    self.err_log.debug('Serving a request')"
+p73
+sI1336
+S'                try:'
+p74
+sI1337
+S'                    self.run_app(conn)'
+p75
+sI1338
+S'                except:'
+p76
+sI1339
+S'                    exc = sys.exc_info()'
+p77
+sI1340
+S'                    handled = self._handleError(*exc)'
+p78
+sI1341
+S'                    if handled:'
+p79
+ssS'call'
+p80
+S'(self=<WSGIWorker(Thread-12, started daemon 123145356689408)>)'
+p81
+sS'func'
+p82
+S'run'
+p83
+sa(dp84
+g63
+S'/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py'
+p85
+sg65
+(dp86
+sg67
+I1830
+sg68
+(dp87
+I1825
+S'        else:'
+p88
+sI1826
+S'            sock_file = conn.makefile(BUF_SIZE)'
+p89
+sI1827
+S''
+sI1828
+S'        try:'
+p90
+sI1829
+S'            # Read the headers and build our WSGI environment'
+p91
+sI1830
+S'            self.environ = environ = self.build_environ(sock_file, conn)'
+p92
+sI1831
+S''
+sI1832
+S'            # Handle 100 Continue'
+p93
+sI1833
+S"            if environ.get('HTTP_EXPECT', '') == '100-continue':"
+p94
+sI1834
+S"                res = environ['SERVER_PROTOCOL'] + ' 100 Continue\\r\\n\\r\\n'"
+p95
+ssg80
+S'(self=<WSGIWorker(Thread-12, started daemon 123145356689408)>, conn=<gluon.rocket.Connection object>)'
+p96
+sg82
+S'run_app'
+p97
+sa(dp98
+g63
+S'/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py'
+p99
+sg65
+(dp100
+sg67
+I1650
+sg68
+(dp101
+I1645
+S'                                      "wsgiorg.futures": executor.futures})'
+p102
+sI1646
+S''
+sI1647
+S'    def build_environ(self, sock_file, conn):'
+p103
+sI1648
+S'        """ Build the execution environment. """'
+p104
+sI1649
+S'        # Grab the request line'
+p105
+sI1650
+S'        request = self.read_request_line(sock_file)'
+p106
+sI1651
+S''
+sI1652
+S'        # Copy the Base Environment'
+p107
+sI1653
+S'        environ = self.base_environ.copy()'
+p108
+sI1654
+S''
+ssg80
+S'(self=<WSGIWorker(Thread-12, started daemon 123145356689408)>, sock_file=<socket._fileobject object>, conn=<gluon.rocket.Connection object>)'
+p109
+sg82
+S'build_environ'
+p110
+sa(dp111
+g63
+S'/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py'
+p112
+sg65
+(dp113
+sg67
+I1401
+sg68
+(dp114
+I1396
+S''
+sI1397
+S'                d = sock_file.readline()'
+p115
+sI1398
+S'                if PY3K:'
+p116
+sI1399
+S"                    d = d.decode('ISO-8859-1')"
+p117
+sI1400
+S'        except socket.timeout:'
+p118
+sI1401
+S"            raise SocketTimeout('Socket timed out before request.')"
+p119
+sI1402
+S'        except TypeError:'
+p120
+sI1403
+S'            raise SocketClosed('
+p121
+sI1404
+S"                'SSL bug caused closure of socket.  See '"
+p122
+sI1405
+S'                \'"https://groups.google.com/d/topic/web2py/P_Gw0JxWzCs".\')'
+p123
+ssg80
+S'(self=<WSGIWorker(Thread-12, started daemon 123145356689408)>, sock_file=<socket._fileobject object>)'
+p124
+sg82
+S'read_request_line'
+p125
+sasS'pyver'
+p126
+S'Python 2.7.3: /Users/garethhandley/Documents/IAPT/web2py.app/Contents/MacOS/python (prefix: /Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources)'
+p127
+sS'etype'
+p128
+S"<class 'gluon.rocket.SocketTimeout'>"
+p129
+sS'date'
+p130
+S'Tue Dec  1 11:55:11 2015'
+p131
+sS'locals'
+p132
+(dp133
+S'sock_file'
+p134
+S'<socket._fileobject object>'
+p135
+sS'self'
+p136
+S'<WSGIWorker(Thread-12, started daemon 123145356689408)>'
+p137
+sssS'traceback'
+p138
+S'Traceback (most recent call last):\n  File "/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py", line 1337, in run\n  File "/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py", line 1830, in run_app\n  File "/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py", line 1650, in build_environ\n  File "/Users/garethhandley/Documents/IAPT/web2py.app/Contents/Resources/gluon/rocket.py", line 1401, in read_request_line\nSocketTimeout: Socket timed out before request.\n'
+p139
+s.

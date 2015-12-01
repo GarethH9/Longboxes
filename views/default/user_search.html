@@ -1,0 +1,50 @@
+<!-- We extend the standard longboxes-layout.html -->
+{{extend 'longboxes-layout.html'}}
+
+<!-- Search results -->
+<div class="container">
+	
+	<!-- Include the search form at the top of the page -->
+	<div class="row text-center">
+		<h1>User Search</h1>
+		<p>You can search users by username, first name or last name. Simply enter your search term into the box below and click search!</p>
+		<!-- Display the search form -->
+		{{=user_search_form}}
+		{{pass}}
+	</div>
+		
+	<hr>
+	
+	<!-- Only display search results if we are performing a search -->
+	{{if performing_search:}}
+	
+		<div class="row text-center">
+			<h2>Search results:</h2>
+			<p>You're searching for users with the username: '{{=search_term}}'</p>
+		</div>
+		
+		<!-- Display users -->
+		<div class="row text-center">
+	
+			{{if users:}}
+				{{for user in users:}}
+					<div class="col-md-3">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h4>{{=user.first_name}} {{=user.last_name}}</h4>
+								<h4><small>{{=user.username}}</small></h4>
+								<a class="btn btn-default" href="{{=URL('collection',vars={'user':user.id})}}">View collection</a>
+							</div>
+						</div>
+					</div>
+				{{pass}}
+			{{else:}}
+				No results
+			{{pass}}
+	
+		</div>
+		
+		
+	{{pass}}
+	
+</div>
