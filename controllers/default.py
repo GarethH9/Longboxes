@@ -411,7 +411,7 @@ def update_comic():
         response.flash = 'Comic saved!'
 
         # Check if comic already exists in box_contents
-        comic = db(db.box_contents.id == form.vars.id).select()
+        comic = db(db.box_contents.comic_id == form.vars.id).select()
 
         if not comic:
             # Add the comic to the user's unfiled box
